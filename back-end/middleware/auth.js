@@ -31,3 +31,25 @@ exports.isAuthenticatedUser = async function (req, res, next) {
     }
 
 }
+
+exports.authorizeRole = (...roles)=>{
+    
+    try {
+        return (req, res, next) =>{
+            // console.log(roles);
+            if(!roles.includes(req.user.role)){;
+                return res.status(403).json({
+                    message: `${req.user.role} is not allowed to access this role`
+                })
+            }
+            next();
+        }
+        
+    } catch (error) {
+        res.status(401).json({
+            message: error.message
+        })
+    }
+    
+
+}
