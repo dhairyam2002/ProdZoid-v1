@@ -52,11 +52,12 @@ userSchema.pre("save", async function(next){
 //When user registers/logs in, jwt token is generated and is stored in cookie.
 //If any user tried to access functionality of admin, it won't allow him. Why? Tokens
 userSchema.methods.getJWTToken = function () {
-    return jwt.sign({id : this._id }, process.env.JWT_SECRET, {
-        expiresIn : process.env.JWT_EXPIRE
-    })
+    return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
+      expiresIn: process.env.JWT_EXPIRE,
+    });
 };
+
 userSchema.methods.comparePassword = async function name(params) {
-    return bcryptjs.compare(params, this.password)
+    return await bcryptjs.compare(params, this.password)
 }
 module.exports = mongoose.model("User", userSchema);
