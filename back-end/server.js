@@ -1,7 +1,6 @@
 const app = require("./app");
 const dotenv = require("dotenv");
 const connectDatabase = require("./config/database");
-const cookieParser = require("cookie-parser");
 
 
 process.on("uncaughtException", (err)=>{
