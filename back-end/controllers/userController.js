@@ -100,62 +100,62 @@ exports.logoutUser = async (req, res, next) => {
 exports.forgotPassword = async (req, res, next) => {
     try {
         const user = await User.findOne({ email: req.body.email });
-  
-    if (!user) {
-      return res.status(500).json({message: "User not found"})
-    }
-  
-    // Get ResetPassword Token
-    const resetToken = user.getResetPasswordToken();
-  
-    await user.save({ validateBeforeSave: false });
-  
-    const resetPasswordUrl = `${req.protocol}://${req.get("host")}/api/v1/password/reset/${resetToken}`;
-  
-    const message = `Your password reset token is :- \n ${resetPasswordUrl}`
-  
-    try {
-      await sendEmail({
-        email: user.email,
-        subject: `Password Recovery`,
-        message,
-      });
-  
-      res.status(200).json({
-        success: true,
-        message: `Email sent to ${user.email} successfully`,
-      });
+
+        if (!user) {
+            return res.status(500).json({ message: "User not found" })
+        }
+
+        // Get ResetPassword Token
+        const resetToken = user.getResetPasswordToken();
+
+        await user.save({ validateBeforeSave: false });
+
+        const resetPasswordUrl = `${req.protocol}://${req.get("host")}/api/v1/password/reset/${resetToken}`;
+
+        const message = `Your password reset token is :- \n ${resetPasswordUrl}`
+
+        try {
+            await sendEmail({
+                email: user.email,
+                subject: `Password Recovery`,
+                message,
+            });
+
+            res.status(200).json({
+                success: true,
+                message: `Email sent to ${user.email} successfully`,
+            });
+        } catch (error) {
+            user.resetPasswordToken = undefined;
+            user.resetPasswordExpire = undefined;
+
+            await user.save({ validateBeforeSave: false });
+
+            return res.status(500).json({ message: error.message })
+        }
+
     } catch (error) {
-      user.resetPasswordToken = undefined;
-      user.resetPasswordExpire = undefined;
-  
-      await user.save({ validateBeforeSave: false });
-  
-      return res.status(500).json( {message: error.message})
+        return res.status(500).json({ message: error.message })
     }
-        
-    } catch (error) {
-        return res.status(500).json({message: error.message}) 
-    }
-    
-  }
+
+}
 
 
-  exports.resetPassword = async function(req, res, next){
+exports.resetPassword = async function (req, res, next) {
     const resetPasswordToken = crypto.createHash("sha256").update(req.params.token).digest("hex");
 
     const user = await User.findOne({
         resetPasswordToken,
-        resetPasswordExpire: {$gt : Date.now()}
+        resetPasswordExpire: { $gt: Date.now() }
     })
 
-    if(!user){
+    if (!user) {
         return res.status(400).json({
             success: false,
             message: "Token expired"
         })
     }
-    if(req.body.password !== req.body.confirmPassword){
+    if (req.body.password !== req.body.confirmPassword) {
         return res.status(400).json({
             message: "Passwords don't match"
         })
@@ -164,7 +164,7 @@ exports.forgotPassword = async (req, res, next) => {
     user.resetPasswordExpire = undefined;
     user.resetPasswordToken = undefined;
 
-    await user.save({validateBeforeSave: false})
+    await user.save({ validateBeforeSave: false })
 
     // sending token
     const token = user.getJWTToken();
@@ -180,5 +180,59 @@ exports.forgotPassword = async (req, res, next) => {
         token
     })
 
-  }
-  
+}
+
+
+//This route can be accessed only via logged in user. If user is logged in, we can get his id via token and that will be stored in req.user
+exports.getUserDetails = async (req, res, next) => {
+    try {
+        const user = await User.findById(req.user.id);
+
+        res.status(200).json({
+            success: true,
+            user
+        })
+    } catch (error) {
+        res.status(500).json({
+            message: error.message
+        })
+    }
+}
+
+exports.updatePassword = async (req, res, next) => {
+
+
+    try {
+        const user = await User.findById(req.user.id).select('+password');
+        const passwordMatched = await user.comparePassword(req.body.oldPassword);
+
+        if (!passwordMatched) {
+            return res.status(400).json({ success: false, message: "Old password is incorrect" })
+        }
+
+        if (req.body.newPassword !== req.body.confirmPassword) {
+            return res.status(400).json({ success: false, message: "Passwords don't match" });
+        }
+
+        user.password = req.body.newPassword;
+
+        await user.save();
+
+        const token = user.getJWTToken();
+        const tokenObject = {
+            expires: new Date(
+                Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
+            ),
+            httpOnly: true,
+        };
+        res.status(201).cookie("token", token, tokenObject).json({
+            success: true,
+            user,
+            token
+        })
+
+
+    } catch (error) {
+        res.status(500).json({success: false, message: error.message})
+    }
+}
