@@ -1,6 +1,8 @@
 const User = require("../models/userModel");
 const sendEmail = require("../utils/sendEmail");
-const crypto = require("crypto")
+const crypto = require("crypto");
+
+
 //Register a user
 exports.registerUser = async (req, res, next) => {
     const { name, email, password } = req.body;
@@ -233,6 +235,117 @@ exports.updatePassword = async (req, res, next) => {
 
 
     } catch (error) {
-        res.status(500).json({success: false, message: error.message})
+        res.status(500).json({ success: false, message: error.message })
+    }
+}
+
+
+exports.updateProfile = async (req, res, next) => {
+    try {
+        const updatedData = {
+            name: req.body.name,
+            email: req.body.email
+        }
+        const user = await User.findByIdAndUpdate(req.user.id, updatedData);
+
+        res.status(200).json({
+            success: true,
+            message: "Successfully updated",
+            user
+        })
+
+    } catch (error) {
+        res.json(500).json({
+            success: false,
+            message: error.message
+        })
+    }
+
+}
+
+
+// Get all users for admin
+exports.getAllUsers = async (req, res, next) => {
+    try {
+        console.log("inside")
+        const users = await User.find();
+        res.status(200).json({
+            success: true,
+            users
+        })
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        })
+    }
+}
+
+//get single user for admin
+exports.getUser = async (req, res, next) => {
+    try {
+        const user = await User.findById(req.params.id);
+
+        if (!user) {
+            res.status(400).json({
+                success: false,
+                message: "User not found!"
+            })
+        }
+        res.status(200).json({
+            success: true,
+            user
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        })
+    }
+
+}
+
+//Chaning the role (admin only)
+exports.updateUserRole = async (req, res, next) =>{
+    try {
+        const updatedData = {
+            name: req.body.name,
+            email: req.body.email,
+            role: req.body.role
+        }
+        const user = await User.findByIdAndUpdate(req.params.id, updatedData);
+        res.status(200).json({
+            success: true,
+            message: "Successfully updated",
+            user
+        })
+        
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        })
+    }
+}
+
+
+exports.deleteProfile = async (req, res, next) =>{
+    try {
+        const user = await User.findById(req.params.id);
+        if(!user){
+            return res.status(400).json({
+                success: false,
+                message: "User doesn't exist!"
+            })
+        }
+
+        await user.remove();
+
+        res.status(200).json({success: true, message: "User successfully removed!"});
+
+    } catch (error) {
+        res.status(500).json({success: true, message: error.message})
+        
     }
 }
