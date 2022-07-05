@@ -1,0 +1,47 @@
+.footer{
+    margin-top: 15vmax;
+    padding: 2vmax;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: black;
+    color: white
+}
+@media only screen and (max-width: 600px) {
+    .footer {
+      font-size: 3vmin;
+    }
+  }
+.linkf {
+    color: white;
+    margin-top: 2vmin;
+    margin-bottom: 2.5vmin;
+}
+.left-s{    
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.middle-s{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.right-s{
+    display: flex;
+    flex-direction: column;
+}
+.logof{
+    color: #76ffff;
+    margin-bottom: 5vmin;
+    font-size: large;
+}
+.linkf:hover{
+    color: #76ffff;
+}
+.logof:hover {
+    color: white
+}

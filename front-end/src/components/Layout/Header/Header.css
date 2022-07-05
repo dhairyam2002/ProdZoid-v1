@@ -1,0 +1,33 @@
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #76ffff;
+    padding: 2vmax;
+    padding-bottom: 2vmax;
+}   
+@media only screen and (max-width: 600px) {
+    body {
+      font-size: 4vmin;
+    }
+  }
+.link{
+    color: black;
+    margin-left: 2vmax;
+    font-size: larger;
+}
+.link:hover {
+    color:black;
+
+}
+.logo{
+    font-weight: 600;
+    font-family: 'Patrick Hand', cursive;
+    font-size: x-large;
+}
+.right-half{
+    margin-left: 0.5vmax;
+    display: flex;
+    flex-direction: row;
+    margin-right: 1vmax
+}
