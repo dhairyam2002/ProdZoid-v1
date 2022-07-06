@@ -1,26 +1,30 @@
 import React, { Fragment } from 'react'
 import Product from "./Product.js"
 import "./Home.css"
+// import MetaData from '../Layout/MetaData.jsx'
+import {getProduct} from "../../actions/productAction"
+import {useSelector, useDispatch} from "react-redux"
 
-const product = {
-  name : "iPhone",
-  images: [{url : "https://cdn.pocket-lint.com/r/s/970x/assets/images/158444-phones-review-apple-iphone-13-review-images-image1-clh15n2ocg.jpg"}],
-  price: 10000,
-  _id: 123
-}
 const Home = () => {
+  const dispatch = useDispatch(); 
+
+  React.useEffect(()=>{
+    dispatch(getProduct())
+  },[]);
+  
+  const {loading, products} = useSelector(function(state){
+    return state.products;
+  })
+  // console.log(products);
   return (
     <Fragment>
+      {/* <MetaData title = {"ProductZoid"} /> */}
         <h2 className="homeHeading">Featured</h2>
         <div className="container" id="container">
-          <Product product = {product} />
-          <Product product = {product} />
-          <Product product = {product} />
-          <Product product = {product} />
-          <Product product = {product} />
-          <Product product = {product} />
-          <Product product = {product} />
-          <Product product = {product} />
+
+          {products && products.map(product => <Product product = {product} />)}
+          {/* {products} */}
+
 
         </div>
     </Fragment>

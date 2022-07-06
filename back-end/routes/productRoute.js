@@ -7,7 +7,7 @@ const { isAuthenticatedUser, authorizeRole } = require('../middleware/auth');
 const router = express.Router();
 
 //Create product ONLY ADMIN
-router.route("/products").get(isAuthenticatedUser, getAllProducts);
+router.route("/products").get(getAllProducts);
 
 
 router.route("/admin/product/new").post(isAuthenticatedUser,authorizeRole("admin"),createNewProduct);
