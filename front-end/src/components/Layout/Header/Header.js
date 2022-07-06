@@ -5,6 +5,7 @@ import "./Header.css"
 
 const Header = function () {
     return (
+        <div className = 'header-top'>
         <div className="header">
             <Link to="/products" className="link">Products</Link>
             <Link to="/" className="link logo"> PRODUCT ZOID</Link>
@@ -13,6 +14,7 @@ const Header = function () {
                 <Link to = "/user" className="link user"><span class="material-symbols-outlined">account_circle</span></Link>
             </div>
 
+        </div>
         </div>
     )
 }

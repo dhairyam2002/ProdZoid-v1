@@ -5,7 +5,14 @@
     background-color: #76ffff;
     padding: 2vmax;
     padding-bottom: 2vmax;
+    position: fixed;
+    width: 100%;
+    top: 0 ;
+    z-index: 1;
 }   
+.header-top{
+    
+}
 @media only screen and (max-width: 600px) {
     body {
       font-size: 4vmin;
