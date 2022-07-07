@@ -1,0 +1,218 @@
+.navi-icon {
+    display: inline;
+    margin-left: 1vh;
+    margin-right: 1vh;
+}
+
+.CarouselImage {
+    width: 15vw;
+    height: 25vw;
+}
+
+@media only screen and (max-width: 900px) {
+    .CarouselImage {
+        width: 27vw;
+        height: 40vw;
+    }
+}
+
+.product-image {
+    /* border: 2px solid red; */
+    width: 30vw;
+}
+
+.product-details {
+    display: flex;
+    padding: 5vmax;
+    max-width: 100%;
+    box-sizing: border-box;
+    width: 100vw;
+    border: 1px solid gray;
+}
+
+.product-details>div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    box-sizing: border-box;
+    /* align-items: center; */
+    padding: 2vmax;
+    /* border: 3px solid black; */
+}
+
+.first-div-child {
+    align-items: center;
+}
+
+.details-1>h3 {
+    color: black;
+    font-size: 1.4vmax;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    font-weight: 600;
+}
+
+.details-1>p {
+    color: gray;
+    font-weight: 300;
+    font-size: 0.6vmax;
+}
+
+.details-2 {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: flex-start; */
+    align-items: center;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    width: 70%;
+    padding: 0.5vmax 0;
+    justify-content: flex-start;
+}
+
+.details-2>span {
+    font-weight: 300;
+    color: gray;
+    font-size: 1.0vh;
+}
+
+.details-3 {
+    width: 65%;
+}
+
+.details-3>h2 {
+    font-family: 'Times New Roman', Times, serif;
+    margin: 1vmax 0;
+}
+
+.details-3-1 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.details-3-1>button {
+    border: none;
+    background-color: black;
+    color: white;
+    cursor: grab;
+    transition: all 0.5s;
+}
+
+.details-3-1>input {
+    border: none;
+    border-bottom: 2px solid black;
+    padding: 0.5vmax;
+    width: 10vmax;
+    text-align: center;
+    outline: none;
+    font-size: 1.3vmax;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: black;
+}
+
+.status{
+    margin-top: 1vmax;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.customized-btn {
+    margin-top: 1vmax;
+    border: 0;
+    background-color: black;
+    color: white;
+    padding: 8px;
+    border-radius: 8px;
+    transition: all 0.5s;
+}
+.customized-btn:hover{
+    background-color: darkslategray;
+    transform: scale(1.02);
+}
+
+.details-4 > p{
+    margin:0
+}
+.details-4 >p:last-child{
+    font-size: small;
+}
+
+@media screen and (max-width: 800px) {
+    .product-details{
+        display: flex;
+        flex-direction: column;
+        height: unset;
+    }
+    .product-details > div{
+        align-items: center;
+    }
+    .details-1 > h3{
+        font-size: 2.5vmax;
+        text-align: center;
+    }
+    .details-1 > p {
+        font-size: 1vmax;
+        text-align: center;
+    }
+
+    .details-2{
+        justify-content: center;
+    }
+    .details-2 > span{
+        font-size: 1.3vmax;
+    }
+    .details-3 > h3{
+        margin-top: 2vmax;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        place-items: center;
+    }
+    .details-3-1{
+        justify-content: center;
+    }
+    .details-3-1 > input{
+        font-size: 1.5vmax;
+        font-weight: 800;
+        margin: 0 2vmax;
+    }
+    .customized-btn{
+        padding: 2vmax;
+        align-items: center;
+        margin: 2vmax auto;
+        width:100%;
+    }
+}
+.operator{
+    border-radius: 50%;
+    padding: 1vmax;
+}
+
+.reviews-heading{
+    margin: 3vmax 0;
+    text-align: center;
+}
+.reviewer-profile{
+    width: 7vw;
+}
+.reviews-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30vw;
+    text-align: justify;
+    background-color: #f7f6f6;
+    border: 1px solid gray;
+    margin: 0.9vw 0.9vw;
+    padding: 1vmax;
+    flex: none;
+}
+.reviews{
+    display: flex;
+    overflow: scroll;
+    font-size: small;
+}

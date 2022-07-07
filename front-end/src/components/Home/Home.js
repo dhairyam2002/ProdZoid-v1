@@ -12,10 +12,10 @@ const Home = () => {
     dispatch(getProduct())
   },[]);
   
-  const {loading, products} = useSelector(function(state){
+  const {loading, error, products} = useSelector(function(state){
     return state.products;
   })
-  // console.log(products);
+
  
   return (
     <Fragment>
@@ -24,8 +24,7 @@ const Home = () => {
          <h2 className="homeHeading">Featured</h2>
          <div className="container" id="container">
  
-           {products && products.map(product => <Product product = {product} />)}
-           {/* {products} */}
+           {products && products.map(product => <Product product = {product} key = {product._id} />)}
  
  
          </div>
