@@ -64,8 +64,8 @@
     flex-direction: row;
     /* justify-content: flex-start; */
     align-items: center;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
     width: 70%;
     padding: 0.5vmax 0;
     justify-content: flex-start;
@@ -114,8 +114,10 @@
 
 .status{
     margin-top: 1vmax;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    width: 70%;
+    padding: 1vmax 0;
 }
 
 .customized-btn {
@@ -215,4 +217,10 @@
     display: flex;
     overflow: scroll;
     font-size: small;
+}
+
+@media screen and (max-width: 900px) {
+    .reviews-card{
+        width: 33vmax;
+    }
 }

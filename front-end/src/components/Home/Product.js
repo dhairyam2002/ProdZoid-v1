@@ -1,7 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import ReactStars from 'react-rating-stars-component';
-
 const Product = ({ product }) => {
     
     const options = {
@@ -12,10 +11,13 @@ const Product = ({ product }) => {
         value: product.ratings || product.rating,
         isHalf: true
     } 
+    // console.log(product);
+    const {id} = useParams();
+    console.log();
     return (
 
-        <Link className="productCard" to={`product/${product._id}`}>
-            <img src={"https://media.wired.com/photos/5d803f5dc891950008ce3447/master/pass/iphone-11_6175-Edit.jpg"}  />
+        <Link className="productCard" to={`/product/${product._id}`}>
+            <img src={product.images && product.images[0] ? product.images[0].url : "https://burst.shopifycdn.com/photos/photography-product-download.jpg?width=1200&format=pjpg&exif=1&iptc=1"}  />
             <p>{product.name}</p>
             <div>
                 <ReactStars {...options} /> <span>({product.numOfReviews})</span>

@@ -6,7 +6,8 @@ import Home from "./components/Home/Home";
 import "./App.css"
 import Product from "./components/Layout/Product";
 import ProductDetails from "./components/Product/ProductDetails";
-
+import SearchComponent from "./components/Layout/SearchComponent";
+import Products from "./components/Product/Products";
 
 
 function App() {
@@ -16,8 +17,10 @@ function App() {
       <div className="app">
       
       <Routes>
-      <Route path = "/" element = {<><Header className='header-2'/> <Home /></>}></Route>
-      <Route path = "/product/:id" element = {<><Header className='header-2'/><ProductDetails /> </>} />
+      <Route path = "/" element = {<><Header className='header-2 main-header'/><SearchComponent /><Home /></>}></Route>
+      <Route path = "/product/:id" element = {<><Header className='header-2'/><ProductDetails /> </>}></Route>
+      <Route path = "/products" element = {<><Header className='header-2 main-header'/><SearchComponent /><Products /></>}></Route>
+      <Route path = "/products/:keyword" element = {<><Header className='header-2 main-header'/><SearchComponent /><Products /></>}></Route>
       </Routes>
       <Footer />
       </div>

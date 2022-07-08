@@ -1,6 +1,8 @@
 body{
     margin: 0;
+    /* position: relative; */
 }
+
 *{
     font-family: Arial, sans-serif;
     scroll-behavior: smooth;
@@ -26,4 +28,67 @@ input[type="number"]{
 }
 .green{
     color: green;
+}
+
+.search-component{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2vmax;
+}
+.search-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.search-input{
+    border-radius: 15px;
+    width: 60vw;
+    transition: all 0.5s;
+    padding: 1.3vmin;
+}
+.search-input:focus{
+    transform: scale(1.03);
+    padding: 2vmin;
+}
+.search-button{
+    margin-top: 2vmin;
+    width: 35%;
+    background-color: black;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 1vh 0;
+    transition: all 0.5s;
+    border-radius: 17px;
+    font-weight: 900;
+}
+.search-button:hover{
+    transform: scale(1.06);
+}
+.explore{
+    margin-top: 10vmin;
+    font-size: larger;
+    background-color: black;
+    color: white;
+    padding: 2vmin;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 900;
+    border-radius: 17px;
+    transition: all 0.7s;
+}
+.explore:hover{
+    color: white;
+    text-decoration: none;
+    transform: scale(1.06);
+}
+@media screen and (max-width: 800px) {
+    .explore{
+        margin-top: 17vmin;
+    }
+}
+
+.main-header{
+    position: fixed;
 }

@@ -11,6 +11,7 @@ import ReactStars from 'react-rating-stars-component';
 const ProductDetails = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
+    console.log(id);
     React.useState(() => {
         dispatch(getProductDetail(id));
     }, [dispatch, id]);
@@ -27,7 +28,7 @@ const ProductDetails = () => {
         isHalf: true
     }
 
-    console.log(productDetail);
+    // console.log(productDetail);
     return (
         <Fragment >
             {loading ? <Loader /> : (

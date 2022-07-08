@@ -15,8 +15,7 @@ const Home = () => {
   const {loading, error, products} = useSelector(function(state){
     return state.products;
   })
-
- 
+  
   return (
     <Fragment>
       {loading ? <><Loader /></> : (
@@ -30,8 +29,6 @@ const Home = () => {
          </div>
          </>
       )}
-      {/* <MetaData title = {"ProductZoid"} /> */}
-     
     </Fragment>
   )
 }

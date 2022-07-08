@@ -5,7 +5,7 @@
     border-bottom: 1px solid grey;
     padding: 1vmax;
     margin: 5vmax auto;
-    margin-top: 10vmax;
+    margin-top: 5vmax;
 }
 @media screen and (max-width: 700px){
     .homeHeading{
@@ -36,6 +36,7 @@
     width: 14vmax;
     display: flex;
     flex-direction: column;
+    height: 20vmax;
 }
 
 .productCard > div {
@@ -63,7 +64,11 @@
     transform: translateY(-1vmax)
 }   
 
+.productCard{
+    border: 1px solid lightgray;
+}
 @media screen and (max-width: 950px){
+    
     .productCard > p{
         margin-bottom: 0; 
         font-size: 1.8vmax;
@@ -79,4 +84,8 @@
         /* margin: 0 0.5vmax;   */
         font-size: 1.3vmax;
     }
+}
+
+.home-product-img{
+    width: 25px;
 }

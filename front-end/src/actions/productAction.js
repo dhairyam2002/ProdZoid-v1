@@ -1,13 +1,19 @@
 import axios from "axios";
+// import { NavLink } from "react-router-dom";
 
 import constants, { ALL_PRODUCT_FAIL, ALL_PRODUCT_REQ, ALL_PRODUCT_SUC, CLEAR_ERR } from "../constants/productConstants";  
 
 
-export const getProduct = function(){
+export const getProduct = function(keyword = ""){
     return async (dispatch) => {
         try {
             dispatch({type: ALL_PRODUCT_REQ});
-            const {data} = await axios.get("api/v1/products");
+            // console.log(keyword);
+            console.log(`api/v1/products?keyword=${keyword}`)
+            let link = `api/v1/products?keyword=${keyword}`;
+            console.log(link);
+            // console.log(response);
+            const {data} = await axios.get(link);
             // console.log(data);
             dispatch({
                 type: ALL_PRODUCT_SUC,
