@@ -5,11 +5,11 @@
     border-bottom: 1px solid grey;
     padding: 1vmax;
     margin: 5vmax auto;
-    margin-top: 5vmax;
+    margin-top: 6vmax;
 }
 @media screen and (max-width: 700px){
     .homeHeading{
-        margin-top: 13vmax;
+        margin-top: 25vmin;
     }
 
 }

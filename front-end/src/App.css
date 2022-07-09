@@ -87,6 +87,9 @@ input[type="number"]{
     .explore{
         margin-top: 17vmin;
     }
+    .search-button{
+        padding: 2vmin;
+    }
 }
 
 .main-header{

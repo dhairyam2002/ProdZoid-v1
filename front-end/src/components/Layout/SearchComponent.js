@@ -6,18 +6,19 @@ import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProduct } from '../../actions/productAction';
 
-const SearchComponent = ({history}) => {
-    const navigate = useNavigate();
-    // console.log(navigate);
+const SearchComponent = () => {
+
     const [keyword, setKeyword] = React.useState("");
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     function handleChange(event){
         setKeyword(event.target.value);
-        
+
     }
     
     function handleSubmit(event) {
         event.preventDefault();
+        navigate(`/products/${keyword}`)
         dispatch(getProduct(keyword));
         
        
@@ -29,7 +30,7 @@ const SearchComponent = ({history}) => {
         <div className='search-component'>
             <div className='search-form'>
                 <input className='search-input' type="text" placeholder='Search Keyword Here' onChange={handleChange}/>
-                <button className='search-button' onClick={handleSubmit}><Link to='/products' className='link'>Search</Link></button>
+                <button className='search-button' onClick={handleSubmit}> Search</button>
                 {/* <Link to='/products'>Search</Link> */}
             </div>
 

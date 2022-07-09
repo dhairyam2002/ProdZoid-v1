@@ -4,13 +4,12 @@ import axios from "axios";
 import constants, { ALL_PRODUCT_FAIL, ALL_PRODUCT_REQ, ALL_PRODUCT_SUC, CLEAR_ERR } from "../constants/productConstants";  
 
 
-export const getProduct = function(keyword = ""){
+export const getProduct = function(keyword = "", price=[0, 250000], rating=[0,5]){
     return async (dispatch) => {
         try {
             dispatch({type: ALL_PRODUCT_REQ});
             // console.log(keyword);
-            console.log(`api/v1/products?keyword=${keyword}`)
-            let link = `api/v1/products?keyword=${keyword}`;
+            let link = `/api/v1/products?keyword=${keyword}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${rating[0]}&ratins[lte]=${rating}`;
             console.log(link);
             // console.log(response);
             const {data} = await axios.get(link);

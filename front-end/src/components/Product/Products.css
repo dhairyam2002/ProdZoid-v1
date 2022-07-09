@@ -1,0 +1,42 @@
+.product-page{
+    
+}
+
+.filter-box{
+    width: 30vmin;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 1.3vmin auto;
+}
+.filter-box > p{
+    text-align: center;
+    margin-top: 1vmin;
+    margin-bottom: 1vmin;
+    font-weight: 900;
+}
+.apply-filter{
+    background-color: black;
+    color: white;
+    border-radius: 10px; 
+    margin-bottom: 0.3vmin;
+    padding: 1vmin;
+    font-size: small;
+    font-weight: 800;
+    transition: all 0.4s;
+}
+.apply-filter:hover{
+    transform: scale(1.05);
+}
+@media screen and (max-width: 900px) {
+    .filter-box{
+        width: 50vmin;
+    }
+    .apply-filter{
+        padding: 2vmin;
+        font-weight: 800;
+    }
+    
+}
