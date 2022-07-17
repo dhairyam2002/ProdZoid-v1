@@ -89,3 +89,20 @@
 .home-product-img{
     width: 25px;
 }
+
+.explore{
+    margin-top: 10vmin;
+    font-size: larger;
+    background-color: black;
+    color: white;
+    padding: 2vmin;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 900;
+    border-radius: 17px;
+    transition: all 0.7s;
+    display: flex;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-around;
+}

@@ -11,7 +11,7 @@ const Header = function () {
             <Link to="/" className="link logo"> PRODUCT ZOID</Link>
             <div className="right-half">
                 <Link to = "/cart" className="link cart"><span className="material-symbols-outlined">shopping_cart</span></Link>
-                <Link to = "/user" className="link user"><span className="material-symbols-outlined">account_circle</span></Link>
+                <Link to = "/account" className="link user"><span className="material-symbols-outlined">account_circle</span></Link>
             </div>
 
         </div>

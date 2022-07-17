@@ -45,6 +45,7 @@ exports.loginUser = async (req, res, next) => {
 
     if (!email || !password) {
         return res.status(400).json({
+            success: false,
             message: "Please enter both Email and Password"
 
         })
@@ -53,6 +54,7 @@ exports.loginUser = async (req, res, next) => {
 
     if (!user) {
         return res.json({
+            success: false,
             message: "Invalid Email or Password"
         })
     }
@@ -60,6 +62,7 @@ exports.loginUser = async (req, res, next) => {
     const isPassword = await user.comparePassword(password);
     if (!isPassword) {
         return res.json({
+            success: false,
             message: "Invalid Email or Password"
         })
     }

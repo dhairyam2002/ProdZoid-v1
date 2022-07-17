@@ -4,6 +4,9 @@ import "./Home.css"
 // import MetaData from '../Layout/MetaData.jsx'
 import {getProduct} from "../../actions/productAction"
 import {useSelector, useDispatch} from "react-redux"
+import { useLocation, Link } from 'react-router-dom'
+
+
 import Loader from "../../components/Layout/Loader/Loader"
 const Home = () => {
   const dispatch = useDispatch(); 
@@ -16,6 +19,9 @@ const Home = () => {
     return state.products;
   })
   
+  const currentRoute = useLocation();
+
+
   return (
     <Fragment>
       {loading ? <><Loader /></> : (
@@ -24,9 +30,9 @@ const Home = () => {
          <div className="container" id="container">
  
            {products && products.map(product => <Product product = {product} key = {product._id} />)}
- 
- 
+
          </div>
+         {currentRoute.pathname == '/' ? (<Link to='/products' className='explore'>Explore more products!!</Link>) : ("")}
          </>
       )}
     </Fragment>

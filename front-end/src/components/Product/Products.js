@@ -5,10 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProduct } from '../../actions/productAction';
 import Loader from '../Layout/Loader/Loader';
 import Product from '../Home/Product';
+import { useLocation } from 'react-router-dom';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Slider, Typography } from '@mui/material';
 import { useHistory } from "react-router-dom";
 // import { Typography } from '@mui/material/styles/createTypography';
+
+
 const Products = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -29,17 +32,28 @@ const Products = () => {
   // React.useEffect(() => {
   //   dispatch(getProduct(keyword, price))
   // }, [dispatch, keyword, price]);
+  const currentRoute = useLocation();
+  console.log(currentRoute);
 
-  function handleFiltering(event){
+  React.useEffect(()=>{
+    dispatch(getProduct(keyword));
+    if (currentRoute.pathname == "/products") {
+      console.log('true');
+      document.querySelector(`#${"product-page"}`).scrollIntoView();
+    }
+  }, [dispatch])
+  
+
+  function handleFiltering(event) {
     navigate(`/products/${keyword ? keyword : ""}`);
-    console.log(keyword + " " + price + " "+ rating);
+    console.log(keyword + " " + price + " " + rating);
     dispatch(getProduct(keyword, price, rating));
   }
 
   return (
     <Fragment>
       {loading ? <><Loader /></> : (
-        <div className='product-page'>
+        <div className='product-page' id="product-page">
           <div className='filter-box'>
             <p>Price filter:</p>
             <Slider className='slider' value={price} onChange={priceHandler}
@@ -50,7 +64,7 @@ const Products = () => {
             <Slider className='slider' value={rating} onChange={ratingHandler}
               valueLabelDisplay='auto'
               aria-labelled-by="range-slider" min={0} max={5} />
-              <button className='apply-filter' onClick={handleFiltering}>Apply Filter</button>
+            <button className='apply-filter' onClick={handleFiltering}>Apply Filter</button>
           </div>
           <h2 className="homeHeading">Products</h2>
           <div className="container" id="container">

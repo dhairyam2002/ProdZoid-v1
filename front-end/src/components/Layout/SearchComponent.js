@@ -33,8 +33,6 @@ const SearchComponent = () => {
                 <button className='search-button' onClick={handleSubmit}> Search</button>
                 {/* <Link to='/products'>Search</Link> */}
             </div>
-
-            {currentRoute.pathname == '/' ? (<Link to='/products' className='explore'>Explore more products!!</Link>) : ("")}
         </div>
     )
 }

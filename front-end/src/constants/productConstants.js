@@ -7,3 +7,5 @@ export const CLEAR_ERR = "CLEAR_ERR";
 export const DETAILS_REQ = "DETAILS_REQ";
 export const DETAILS_SUC = "DETAILS_SUC";
 export const DETAILS_FAIL = "DETAILS_FAIL";
+
+

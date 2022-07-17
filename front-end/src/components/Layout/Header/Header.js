@@ -108,7 +108,7 @@ export default function PrimarySearchAppBar() {
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
-    <Menu style={{color: "white"}}
+    <Menu style={{ color: "white" }}
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{
         vertical: 'top',
@@ -124,43 +124,43 @@ export default function PrimarySearchAppBar() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-      <Link to='/cart' className = "link-m">
-        <Badge>
-          <span class="material-symbols-outlined">
-            shopping_cart
-          </span>
-          <p>Cart</p>
-        </Badge>
+        <Link to='/cart' className="link-m">
+          <Badge>
+            <span class="material-symbols-outlined">
+              shopping_cart
+            </span>
+            <p>Cart</p>
+          </Badge>
         </Link>
       </MenuItem>
       <MenuItem>
-      <Link to='/user' className='link-m'>
-        <Badge>
-          <span class="material-symbols-outlined">
-            account_circle
-          </span>
-          <p>User</p>
-        </Badge>
+        <Link to='/user' className='link-m'>
+          <Badge>
+            <span class="material-symbols-outlined">
+              account_circle
+            </span>
+            <p>User</p>
+          </Badge>
         </Link>
       </MenuItem>
     </Menu>
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }} className = 'header-comp'>
-      <AppBar position="static" style={{backgroundColor: "black", color: "white"}}>
+    <Box sx={{ flexGrow: 1 }} className='header-comp'>
+      <AppBar position="static" style={{ backgroundColor: "black", color: "white" }}>
         <Toolbar>
-          <Link to='/' className= 'link'><h5 className='logo'>ProdZoid</h5></Link>
-          
+          <Link to='/' className='link'><h5 className='logo'>ProdZoid</h5></Link>
+
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: "flex" }}>
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
               <Link to="/cart" className='link'>
-              <Badge>
-                <span class="material-symbols-outlined">
-                  shopping_cart
-                </span>
-              </Badge>
+                <Badge>
+                  <span class="material-symbols-outlined">
+                    shopping_cart
+                  </span>
+                </Badge>
               </Link>
             </IconButton>
             <IconButton
@@ -169,13 +169,14 @@ export default function PrimarySearchAppBar() {
               aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <Link to="/" className='link'>
-              <Badge>
-              <AccountCircle />
-              </Badge>
+              <Link to="/account" className='link'>
+                <Badge>
+                  <span class="material-symbols-outlined">
+                    account_circle
+                  </span>
+                </Badge>
               </Link>
             </IconButton>
           </Box>
