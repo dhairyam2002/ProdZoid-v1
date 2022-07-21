@@ -15,8 +15,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link as LinkRouter, Navigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import { loginUser } from '../../actions/userAction';
-import {useNavigate} from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Copyright(props) {
     return (
@@ -36,7 +37,7 @@ const theme = createTheme();
 export default function SignIn() {
 
     const navigate = useNavigate();
-    const {loading, isAuthenticated, user} = useSelector(function(state){
+    const { loading, isAuthenticated, user , error} = useSelector(function (state) {
         return state.user;
     })
     const [loginState, setLoginState] = React.useState({
@@ -44,7 +45,7 @@ export default function SignIn() {
         password: ""
     })
     const dispatch = useDispatch();
-    function handleChange(event){
+    function handleChange(event) {
         setLoginState({
             email: event.target.name == "email" ? event.target.value : loginState.email,
             password: event.target.name == "password" ? event.target.value : loginState.password
@@ -53,87 +54,104 @@ export default function SignIn() {
     function handleSubmit(event) {
         event.preventDefault();
         dispatch(loginUser(loginState));
-        console.log(loginState);
     }
 
-    React.useEffect(()=>{
-        if(isAuthenticated === true){
+    React.useEffect(() => {
+        if (isAuthenticated === true) {
             navigate("/account");
         }
-    }, [isAuthenticated]);
-    
+        if(error){
+            toast.warn(error);
+        }
+    }, [dispatch, isAuthenticated, error]);
+
     return (
-        <ThemeProvider theme={theme}>
-            <Container component="main" maxWidth="xs">
-                <CssBaseline />
-                <Box
-                    sx={{
-                        marginTop: 8,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                    }}
-                >
-                    <Avatar sx={{ m: 1, bgcolor: 'black' }}>
-                        <LockOutlinedIcon />
-                    </Avatar>
-                    <Typography component="h1" variant="h5">
-                        Sign in
-                    </Typography>
-                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="email"
-                            label="Email Address"
-                            name="email"
-                            autoComplete="off"
-                            autoFocus
-                            onChange = {handleChange}
-                        />
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="password"
-                            label="Password"
-                            type="password"
-                            id="password"
-                            autoComplete="current-password"
-                            onChange = {handleChange}
-                        />
-                        <Button
-                            className='custom-auth'
-                            type="submit"
-                            fullWidth
-                            variant="contained"
+        <div>
+            <ToastContainer
+                position="top-center"
+                autoClose={5001}
+                hideProgressBar={true}
+                newestOnTop={false}
+                closeOnClick
+                theme='dark'
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                type="error"
+                pauseOnHover
+            />
+            <ThemeProvider theme={theme}>
+                <Container component="main" maxWidth="xs">
+                    <CssBaseline />
+                    <Box
+                        sx={{
+                            marginTop: 8,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <Avatar sx={{ m: 1, bgcolor: 'black' }}>
+                            <LockOutlinedIcon />
+                        </Avatar>
+                        <Typography component="h1" variant="h5">
+                            Sign in
+                        </Typography>
+                        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="email"
+                                label="Email Address"
+                                name="email"
+                                autoComplete="off"
+                                autoFocus
+                                onChange={handleChange}
+                            />
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                name="password"
+                                label="Password"
+                                type="password"
+                                id="password"
+                                autoComplete="current-password"
+                                onChange={handleChange}
+                            />
+                            <Button
+                                className='custom-auth'
+                                type="submit"
+                                fullWidth
+                                variant="contained"
 
-                            sx={{ mt: 3, mb: 2, bgcolor: 'black', ":hover": { bgcolor: 'black', textDecoration: 'underline' } }}
-                        >
-                            Sign In
-                        </Button>
-                        <Grid container>
-                            <Grid item xs>
-                                <LinkRouter to = "/forgot" >
-                                <Link to="/forgot" variant="body2" sx={{ color: 'black', ":hover": { color: 'black' } }}>
-                                    Forgot password?
-                                </Link>
-                                </LinkRouter>
-                            </Grid>
-                            <Grid item>
-                                <LinkRouter to="/account/register" className='link-auth'>
-                                    <Link to="/account/register" variant="body2" sx={{ color: 'black', ":hover": { color: 'black' } }}>
-                                        {"Don't have an account? Sign Up"}
-                                    </Link>
-                                </LinkRouter>
+                                sx={{ mt: 3, mb: 2, bgcolor: 'black', ":hover": { bgcolor: 'black', textDecoration: 'underline' } }}
+                            >
+                                Sign In
+                            </Button>
+                            <Grid container>
+                                <Grid item xs>
+                                    <LinkRouter to="/forgotPassword" >
+                                        <Link to="/forgot" variant="body2" sx={{ color: 'black', ":hover": { color: 'black' } }}>
+                                            Forgot password?
+                                        </Link>
+                                    </LinkRouter>
+                                </Grid>
+                                <Grid item>
+                                    <LinkRouter to="/register" className='link-auth'>
+                                        <Link to="/register" variant="body2" sx={{ color: 'black', ":hover": { color: 'black' } }}>
+                                            {"Don't have an account? Sign Up"}
+                                        </Link>
+                                    </LinkRouter>
 
+                                </Grid>
                             </Grid>
-                        </Grid>
+                        </Box>
                     </Box>
-                </Box>
-                <Copyright sx={{ mt: 8, mb: 4 }} />
-            </Container>
-        </ThemeProvider>
+                    <Copyright sx={{ mt: 8, mb: 4 }} />
+                </Container>
+            </ThemeProvider>
+        </div>
     );
 }

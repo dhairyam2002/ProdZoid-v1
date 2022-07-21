@@ -13,17 +13,20 @@ import SignUp from "./components/Authentication/signUpPage";
 import {useSelector, useDispatch} from 'react-redux';
 import { loadUser } from "./actions/userAction";
 import AccountComponent from "./components/User/AccountComponent";
-
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import ForgotPassword from "./components/User/ForgotPassword";
+import ResetPassword from "./components/User/ResetPassword";
 
 function App() {
   const dispatch = useDispatch();
   dispatch(loadUser());
-  console.log("rendered");
+
+  
 
   return (
     <Router>
       <div className="app">
-      
       <Routes>
       <Route path = "/" element = {<><Header className='header-2 main-header'/><SearchComponent /><Home /></>}></Route>
 
@@ -33,10 +36,13 @@ function App() {
 
       <Route path = "/products/:keyword" element = {<><Header className='header-2 main-header'/><SearchComponent /><Products /></>}></Route>
 
-      <Route path = "/account" element = {<AccountComponent  />} />
+      <Route path = "/account" element = {<><Header className = 'header-2 main-header'></Header><AccountComponent  /></>} />
+      
+      <Route path = "/account/:keyword" element = {<><Header className = 'header-2 main-header'></Header><AccountComponent  /></>} />
       <Route path = "/login" element = {<LoginPage />} />
-      <Route path = "/account/register" element = {<SignUp />} />
-
+      <Route path = "/forgotPassword" element = {<ForgotPassword />} />
+      <Route path = "/register" element = {<SignUp />} />
+      <Route path = "/password/reset/:token" element = {<ResetPassword />}/>
       </Routes>
       <Footer />
       </div>

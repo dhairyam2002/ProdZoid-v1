@@ -3,13 +3,13 @@ const sendEmail = async (options) => {
     const transporter = nodeMailer.createTransport({
         service: "Outlook365",
         auth: {
-            user: process.env.MAIL,
-            pass: process.env.PASSWORD
+            user: "prodzoid4521@outlook.com",
+            pass: "djkankdnIwkm4523698s#"
         },
     });
 
     const mailOptions = {
-        from: process.env.MAIL,
+        from: "prodzoid4521@outlook.com",
         to: options.email,
         subject: options.subject,
         text: options.message,

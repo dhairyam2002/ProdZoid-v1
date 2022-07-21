@@ -1,0 +1,110 @@
+.account-component{
+    width: 80%;
+    margin: 10vmin auto;
+    background-color: rgb(209, 226, 244); 
+}
+.profile-badge{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: center;
+    padding: 3vmin;
+    background-color: whitesmoke;
+    border-bottom: 1px solid lightgray ;
+    border-radius: 20px;
+    width: fit-content;
+    align-content: center;
+}
+.account-component:hover{
+    cursor: pointer;
+}
+.profile-badge > img, .profile-badge > h5{
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 5px;
+}
+.account-component{
+    display: flex;
+    flex-direction: row;
+}
+.panel-items{
+    text-align: center;
+    background-color: whitesmoke;
+    border-bottom: 1px solid lightgray ;
+    border-radius: 20px;
+    margin: 10px 0;
+    padding: 10px 0;
+}
+.responsive-main-content {
+    display: none;
+}
+@media screen and (max-width: 800px){
+    .panel-items{
+        width: 100%;
+    }
+    .account-component{
+        justify-content: center;
+        display: block;
+    }
+    .profile-badge{
+        flex-direction: column;
+        width: 100%;
+    }
+    .profile-badge > img{
+        width: 30%;
+    }
+    .profile-badge > img, .profile-badge > h5{
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-left: 8px;
+    }
+    .profile-badge > h5{
+        font-size: 5vmin;
+        margin-top: 1px;
+        text-align: center;
+    }
+    .responsive-main-content {
+        display: block;
+    }
+    .main-content{
+        display: none;
+        visibility: hidden;
+    }
+}
+.main-content{
+    margin: 25px;
+    width: 100%;
+    /* border: 1px solid lightgray ; */
+}
+.profile-content > img{
+    width: 20vmin;
+}
+.profile-content{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+.updatePanel{
+    display: flex;
+    flex-direction: column;
+    /* text-align: center; */
+    align-items: center;
+}
+.updatePanel > input {
+    width: 70%;
+    margin: 1vmin;
+    padding: 10px;
+}
+.update-btn{
+    margin: 20px;
+    padding:  10px;
+    background: black;
+    color: white;
+    border-radius: 5px;
+    transition: 0.7s all;
+}
+.update-btn:hover{
+    transform: scale(1.05);
+}

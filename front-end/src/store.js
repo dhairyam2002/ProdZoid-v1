@@ -4,12 +4,15 @@ import thunk from 'redux-thunk';
 
 import { composeWithDevTools } from "redux-devtools-extension"
 import { productDetails } from "./reducers/productDetails";
-import { userReducer } from "./reducers/userReducer";
+import { forgotPasswordReducer, resetPasswordReducer, updatePasswordReducer, userReducer } from "./reducers/userReducer";
 
 const reducer = combineReducers({
     products: productReducer,
     productDetail: productDetails,
-    user: userReducer
+    user: userReducer,
+    isUpdated: updatePasswordReducer,
+    VerificationLink: forgotPasswordReducer,
+    resetPasswordMessage: resetPasswordReducer
 });
 
 let initialState = {}
