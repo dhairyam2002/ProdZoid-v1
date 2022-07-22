@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import ReviewsCard from './ReviewsCard';
 import Loader from '../Layout/Loader/Loader';
 import { addToCart } from '../../actions/cartAction';
-
+import { toast, ToastContainer } from 'react-toastify'
 
 import "./ProductDetails.css"
 import ReactStars from 'react-rating-stars-component';
@@ -25,7 +25,7 @@ const ProductDetails = () => {
         edit: false,
         color: "rgba(20,20,20,0.1)",
         activeColor: "black",
-        size: window.innerWidth < 900 ? 21: 25,
+        size: window.innerWidth < 900 ? 21 : 25,
         value: productDetail.ratings,
         isHalf: true
     }
@@ -36,91 +36,104 @@ const ProductDetails = () => {
 
     const [quantity, setQuantity] = React.useState(1);
 
-    function increaseQuantity(event){
-        if(quantity >= productDetail.stock){
+    function increaseQuantity(event) {
+        if (quantity >= productDetail.stock) {
             return;
         }
         setQuantity(prevState => prevState + 1);
     }
-    function decreaseQuantity(event){
+    function decreaseQuantity(event) {
         setQuantity(prevState => {
-            if(prevState === 1){
+            if (prevState === 1) {
                 return 1;
             }
-            else{
+            else {
                 return prevState - 1;
             }
         })
     }
 
-    function cartHandler(event){
-        dispatch(addToCart(id, quantity)); 
-        alert("Item added to cart!");
+    function cartHandler(event) {
+        dispatch(addToCart(id, quantity));
+        toast.success("Item added to cart!");
     }
     return (
         <Fragment >
             {loading ? <Loader /> : (
                 <Fragment>
-                <div className='product-details'>
-                    <div className='first-div-child'>
-                        <Carousel className='product-image'>
-                            {productDetail.images && productDetail.images.map((imgItem) => {
+                    <ToastContainer
+                        position="top-center"
+                        autoClose={5001}
+                        hideProgressBar={true}
+                        newestOnTop={false}
+                        closeOnClick
+                        theme='dark'
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        type="error"
+                        pauseOnHover
+                    />
+                    <div className='product-details'>
+                        <div className='first-div-child'>
+                            <Carousel className='product-image'>
+                                {productDetail.images && productDetail.images.map((imgItem) => {
+                                    return (
+                                        <img className='CarouselImage' src={imgItem.url} key={imgItem.url} />
+                                    )
+                                })}
+                            </Carousel>
+                        </div>
+                        <div >
+                            <div className='details-1'>
+                                <h3>{productDetail.name}</h3>
+                                <p>Product #{productDetail._id}</p>
+                            </div>
+                            <div className='details-2'>
+                                <ReactStars {...options} />
+                                <span>{productDetail.numOfReviews} Reviews</span>
+                            </div>
+                            <div className="details-3">
+                                <h3>₹{productDetail.price}</h3>
+                                <div className="details-3-1">
+                                    <button className='operator' onClick={decreaseQuantity}>-</button>
+                                    <input type="number" value={quantity} />
+                                    <button className='operator' onClick={increaseQuantity}>+</button>
+                                </div>
+                                <button className='customized-btn add-to-cart' onClick={cartHandler}>Add to cart</button>
+                            </div>
+                            <p className='status'>Status:
+                                <b className={productDetail.stock < 1 ? "red" : "green"}>
+                                    {productDetail.stock < 1 ? "Out of stock" : "In stock"}
+                                </b>
+                            </p>
+                            <div className="details-4">
+                                <p>Description: </p>
+                                <p>{productDetail.description}</p>
+                            </div>
+                            <div className='details-5'>
+                                <button className='customized-btn'>Submit Review</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <h3 className='reviews-heading'>Reviews</h3>
+                    {productDetail.reviews && productDetail.reviews[0] ? (
+                        <div className='reviews'>
+                            {productDetail.reviews && productDetail.reviews.map((item) => {
                                 return (
-                                    <img className='CarouselImage' src={imgItem.url} key={imgItem.url} />
+                                    <ReviewsCard reviews={item} key={item._id}></ReviewsCard>
                                 )
                             })}
-                        </Carousel>
-                    </div>
-                    <div >
-                        <div className='details-1'>
-                            <h3>{productDetail.name}</h3>
-                            <p>Product #{productDetail._id}</p>
                         </div>
-                        <div className='details-2'>
-                            <ReactStars {...options} />
-                            <span>{productDetail.numOfReviews} Reviews</span>
-                        </div>
-                        <div className="details-3">
-                            <h3>₹{productDetail.price}</h3>
-                            <div className="details-3-1">
-                                <button className='operator' onClick={decreaseQuantity}>-</button>
-                                <input type="number" value= {quantity} />
-                                <button className='operator' onClick = {increaseQuantity}>+</button>
-                            </div>
-                            <button className='customized-btn add-to-cart' onClick={cartHandler}>Add to cart</button>
-                        </div>
-                        <p className='status'>Status:
-                            <b className={productDetail.stock < 1 ? "red" : "green"}>
-                                {productDetail.stock < 1 ? "Out of stock" : "In stock"}
-                            </b>
-                        </p>
-                        <div className="details-4">
-                            <p>Description: </p>
-                            <p>{productDetail.description}</p>
-                        </div>
-                        <div className='details-5'>
-                            <button className='customized-btn'>Submit Review</button>
-                        </div>
-    
-                    </div>
-    
-                </div>
-                <h3 className='reviews-heading'>Reviews</h3>
-                {productDetail.reviews && productDetail.reviews[0] ? (
-                    <div className='reviews'>
-                        {productDetail.reviews && productDetail.reviews.map((item)=>{
-                            return (
-                                <ReviewsCard reviews = {item} key = {item._id}></ReviewsCard>
-                            )
-                        })}
-                    </div>
-                ): (
-                <><p className="no-reviews"> No Reviews </p></>
-                )}
-            </Fragment>
+                    ) : (
+                        <><p className="no-reviews"> No Reviews </p></>
+                    )}
+                </Fragment>
             )}
         </Fragment>
-        
+
     )
 }
 

@@ -1,0 +1,144 @@
+.cart-component{
+    padding: 2vmax;
+    padding-top: 5vmax;
+
+}
+
+.cart-header{
+    box-sizing: border-box;
+    width: 90%;
+    margin: auto;
+    color: white;
+    display: grid;
+    grid-template-columns: 5fr 1fr 1fr;
+    background-color: #012133;
+}
+
+.cart-header > p{
+    margin: 10px;
+}
+.cart-header > p:last-child{
+    text-align: end;
+    margin-right: 20px;
+}
+
+.item-card{
+    display: flex;
+    flex-direction: row;
+}
+.item-card > img {
+    width: 20vmin;
+    margin-right: 15px;
+}
+.item-card > div{
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 800px) {
+    /* .item-card{
+        padding: 3vmax;
+    }
+    .item-card > img{
+        margin-right: 10px;
+    } */
+}
+
+.item-card > div > a {
+    font: 400 20px Arial;
+    color: darkblue;
+}
+
+.item-card > div > span {
+    font: 300 13px Arial;
+}
+.item-card > div > p {
+    color: #012133;
+    font: 700 15px Arial 
+}
+.card-q {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card-q > input {
+    border: none;
+    padding: 0.1vmax;
+    width: 1vmax;
+    text-align: center;
+    outline: none;
+    width: 30px;
+}
+.item-card > div > p{
+    cursor: pointer;
+}
+.card-container{
+    width: 90%;
+    padding: 1vmax;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 4fr 1fr 1fr;
+}
+
+.card-total{
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.5vmax 0;
+    box-sizing: border-box;
+    font: 500 18px Arial;
+    align-items: center;
+}
+.card-total > p{
+    margin: 0;
+}
+
+.gross-total{
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+}
+.cart-gross{
+    border-top: 2px solid #012133;
+    box-sizing: border-box;
+    margin: 1vmax 5vmax;
+    display: flex;
+    justify-content: space-between;
+    padding: 1vmax;
+}
+.checkout-btn{
+    display: flex;
+    justify-content: flex-end;
+}
+.checkout-btn > button {
+    background-color: #012133;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    width: 50%;
+    transition: 0.5s all;
+    margin: 1vmax 5vmax;
+    border-radius: 10px;
+    cursor: pointer;
+
+}
+
+@media screen and (max-width: 700px) {
+    .cart-component{
+        padding: 0;
+    }
+    .cart-header{
+        width: 100%;
+        grid-template-columns: 3fr 1fr 1fr;
+    }
+    .card-container{
+        margin-top: 10px;
+        width: 100%;
+        grid-template-columns: 3fr 1fr 1fr;
+    }
+    .gross-total{
+        display: grid;
+        grid-template-columns: 0 2fr;
+    }
+    .checkout-btn > button{
+        width: 100%;
+    }
+}
