@@ -5,6 +5,7 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from "redux-devtools-extension"
 import { productDetails } from "./reducers/productDetails";
 import { forgotPasswordReducer, resetPasswordReducer, updatePasswordReducer, userReducer } from "./reducers/userReducer";
+import { cartReducer } from "./reducers/cartReducer";
 
 const reducer = combineReducers({
     products: productReducer,
@@ -12,10 +13,15 @@ const reducer = combineReducers({
     user: userReducer,
     isUpdated: updatePasswordReducer,
     VerificationLink: forgotPasswordReducer,
-    resetPasswordMessage: resetPasswordReducer
+    resetPasswordMessage: resetPasswordReducer,
+    cart: cartReducer
 });
 
-let initialState = {}
+let initialState = {
+    cart:{
+        cartItems : localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems")) : []
+    }
+}
 
 const middleWare = [thunk];
 
