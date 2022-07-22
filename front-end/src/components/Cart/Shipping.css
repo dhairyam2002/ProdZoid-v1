@@ -1,0 +1,30 @@
+.shipping-container{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin: auto;
+    justify-content: center;
+    align-self: center;
+    text-align: center;
+    padding: 5vmax;
+    
+}
+.shipping-form{
+    display: flex;
+    flex-direction: column;
+}
+.shipping-form > input, .shipping-form > select{
+    margin: 10px;
+    border: none;
+    padding: 10px;
+    border-bottom: 2px solid black;
+    
+}
+.shipping-form > input:focus{
+    border: none;
+    border-bottom: 2px solid black;
+}
+
+.shipping-form > button {
+    margin: 10px;
+}

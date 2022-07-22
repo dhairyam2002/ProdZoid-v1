@@ -3,13 +3,16 @@ import "./Cart.css";
 import ItemCard from './ItemCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart } from '../../actions/cartAction';
-
+import { useNavigate } from 'react-router-dom';
 const Cart = () => {
 
+
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { cartItems } = useSelector(state => state.cart);
 
+  const {isAuthenticated} = useSelector(state => state.user);
   function increaseQuantity(id, quantity, stock){
     if(quantity >= stock){
       return;
@@ -24,6 +27,15 @@ const Cart = () => {
   }
   function removeItemsFromCart(id){
     dispatch(removeFromCart(id));
+  }
+
+  function handleCheckout(){
+    if(isAuthenticated === true){
+      navigate("/checkout/shipping");
+    }
+    else{
+      navigate("/login");
+    }
   }
   return (
     <Fragment >
@@ -65,7 +77,7 @@ const Cart = () => {
           </div>
           <div></div>
           <div className='checkout-btn'>
-            <button>Checkout</button>
+            <button onClick={handleCheckout}>Checkout</button>
           </div>
         </div>
       </div>

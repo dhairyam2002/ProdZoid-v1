@@ -18,6 +18,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import ForgotPassword from "./components/User/ForgotPassword";
 import ResetPassword from "./components/User/ResetPassword";
 import Cart from "./components/Cart/Cart";
+import Shipping from "./components/Cart/Shipping";
+import Checkout from "./components/Cart/Checkout";
 
 function App() {
   const dispatch = useDispatch();
@@ -45,6 +47,7 @@ function App() {
       <Route path = "/register" element = {<SignUp />} />
       <Route path = "/password/reset/:token" element = {<ResetPassword />}/>
       <Route path = "/cart" element = {<><Header className='header-2 main-header'/><Cart></Cart></>}/>
+      <Route path = "/checkout/:keyword" element = {<><Header className='header-2 main-header'/><Checkout /></>} />
       </Routes>
       <Footer />
       </div>

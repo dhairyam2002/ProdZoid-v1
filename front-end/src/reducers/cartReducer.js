@@ -1,7 +1,7 @@
 
-import { ADD_TO_CART, REMOVE_FROM_CART } from "../constants/cartConstant";
+import { ADD_TO_CART, REMOVE_FROM_CART, SHIPPING_INFO } from "../constants/cartConstant";
 
-export const cartReducer = (state = { cartItems: [] }, action) => {
+export const cartReducer = (state = { cartItems: [], shippingInfo : {}}, action) => {
     switch (action.type) {
         case ADD_TO_CART:
             console.log("reducer called");
@@ -24,6 +24,11 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
             return {
                 ...state,
                 cartItems: state.cartItems.filter((item) => item.pid !== action.payload)
+            }
+        case SHIPPING_INFO:
+            return {
+                ...state,
+                shippingInfo: action.payload
             }
         default:
             return state;

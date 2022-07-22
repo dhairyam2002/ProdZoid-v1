@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ADD_TO_CART, REMOVE_FROM_CART } from '../constants/cartConstant';
+import { ADD_TO_CART, REMOVE_FROM_CART, SHIPPING_INFO } from '../constants/cartConstant';
 
 
 export const addToCart = function (id, quantity) {
@@ -38,5 +38,15 @@ export const removeFromCart = function (id) {
             console.log(error);
         }
 
+    }
+}
+
+export const shippingIn = function(data){
+    return async (dispatch)=>{
+        dispatch({
+            type: SHIPPING_INFO,
+            payload: data
+        })
+        localStorage.setItem("shippingInfo", JSON.stringify(data));
     }
 }
