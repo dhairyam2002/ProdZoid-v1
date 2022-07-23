@@ -71,7 +71,7 @@ exports.loginUser = async (req, res, next) => {
         expires: new Date(
             Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
         ),
-        httpOnly: true,
+        httpOnly: true, // for avoiding client side scripts to access data
     };
     res.status(201).cookie("token", token, tokenObject).json({
         success: true,

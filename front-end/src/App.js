@@ -20,6 +20,7 @@ import ResetPassword from "./components/User/ResetPassword";
 import Cart from "./components/Cart/Cart";
 import Shipping from "./components/Cart/Shipping";
 import Checkout from "./components/Cart/Checkout";
+import MyOrders from "./components/Orders/MyOrders";
 
 function App() {
   const dispatch = useDispatch();
@@ -48,6 +49,8 @@ function App() {
       <Route path = "/password/reset/:token" element = {<ResetPassword />}/>
       <Route path = "/cart" element = {<><Header className='header-2 main-header'/><Cart></Cart></>}/>
       <Route path = "/checkout/:keyword" element = {<><Header className='header-2 main-header'/><Checkout /></>} />
+
+      <Route path = "/myOrders"  element = {<><Header className='header-2 main-header'/><MyOrders /></>}/>
       </Routes>
       <Footer />
       </div>

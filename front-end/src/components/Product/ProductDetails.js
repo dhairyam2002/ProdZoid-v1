@@ -54,6 +54,10 @@ const ProductDetails = () => {
     }
 
     function cartHandler(event) {
+        if(productDetail.stock < 1){
+            toast.error("Out of stock!");
+            return;
+        }
         dispatch(addToCart(id, quantity));
         toast.success("Item added to cart!");
     }

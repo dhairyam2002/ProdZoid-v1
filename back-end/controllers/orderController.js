@@ -6,9 +6,10 @@ exports.newOrder = async (req, res, next) =>{
 
     console.log(req.body)
     try {
-        const {shippingDetails, orderItems , paymentInfo, orderValue, shippingPrice, totalPrice} = req.body
+        console.log("fhnakfn");
+        const {shippingDetails, orderItems , orderValue, totalPrice} = req.body
 
-        const order = await Order.create({shippingDetails, orderItems , paymentInfo, orderValue, shippingPrice, totalPrice, paymentDate : Date.now(), user: req.user._id});
+        const order = await Order.create({shippingDetails, orderItems, orderValue, totalPrice, user: req.user._id});
 
         res.status(200).json({
             success: true,
@@ -21,3 +22,32 @@ exports.newOrder = async (req, res, next) =>{
         })
     }
 }
+
+
+exports.getOrdersByUser = async (req, res, next) => {
+    try {
+        const id = req.user._id;
+
+        const orders = await Order.find({user: id});
+
+        console.log(orders);
+        if(!orders){
+            res.status(400).json({
+                success: false,
+                message: "No orders made till yet!"
+            })
+        }
+        else{
+            res.status(200).json({
+                success: true,
+                orders
+            })
+        }
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error
+        })
+    }
+}
+
