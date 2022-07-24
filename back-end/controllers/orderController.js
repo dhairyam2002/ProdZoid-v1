@@ -51,3 +51,26 @@ exports.getOrdersByUser = async (req, res, next) => {
     }
 }
 
+exports.getSingleOrder = async(req, res, next) => {
+    try {
+        const orderDetails = await Order.findById(req.params.id);
+
+        if(!orderDetails){
+            res.status(400).json({
+                success: false,
+                message: "No such order found!"
+            })
+        }
+        else{
+            res.status(200).json({
+                success: true,
+                orderDetails
+            })
+        }
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error
+        })
+    }
+}

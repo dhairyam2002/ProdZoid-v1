@@ -7,4 +7,7 @@ export const MY_ORDER_REQ = "MY_ORDER_REQ";
 export const MY_ORDER_SUC = "MY_ORDER_SUC";
 export const MY_ORDER_FAIL = "MY_ORDER_FAIL";
 
+export const SINGLE_ORDER_SUC = "SINGLE_ORDER_SUC";
+export const SINGLE_ORDER_FAIL = "SINGLE_ORDER_FAIL";
+
 export const CLEAR_ERR = "CLEAR_ERR"

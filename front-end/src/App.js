@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./components/Layout/Header/Header"
 import Footer from "./components/Layout/Footer/Footer";
-import {BrowserRouter as Router, Link, Route, Routes} from 'react-router-dom';
+import {BrowserRouter as Router, Link, Route, Routes, Redirect} from 'react-router-dom';
 import Home from "./components/Home/Home";
 import "./App.css"
 import Product from "./components/Layout/Product";
@@ -21,6 +21,9 @@ import Cart from "./components/Cart/Cart";
 import Shipping from "./components/Cart/Shipping";
 import Checkout from "./components/Cart/Checkout";
 import MyOrders from "./components/Orders/MyOrders";
+import OrderDetails from "./components/Orders/OrderDetails";
+
+
 
 function App() {
   const dispatch = useDispatch();
@@ -51,6 +54,8 @@ function App() {
       <Route path = "/checkout/:keyword" element = {<><Header className='header-2 main-header'/><Checkout /></>} />
 
       <Route path = "/myOrders"  element = {<><Header className='header-2 main-header'/><MyOrders /></>}/>
+
+      <Route path = "/myOrders/order/:id" element = {<><Header className='header-2 main-header'/><OrderDetails /></>}/>
       </Routes>
       <Footer />
       </div>

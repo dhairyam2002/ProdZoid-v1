@@ -142,3 +142,47 @@
         width: 100%;
     }
 }
+.gross-order{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+.gross-order > div > p {
+    margin: 2px;
+}
+.gross-wrapper{
+    display: flex;
+}
+
+.gross-order-info{
+    display: grid;
+    margin-top: 10px;
+    grid-template-columns: 2fr 2fr 4fr;
+}
+.orders-status{
+    text-align: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+.back-btn{
+    margin-left: 3vw;
+}
+.back-btn > button > div{
+    display: flex;
+    align-items: center;
+}
+.back-btn > button{
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    border: none;
+    transition: 0.8s all;
+}
+
+.back-btn > button:hover{
+    transform: scale(1.06);
+}

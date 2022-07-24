@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import Loader from "../Layout/Loader/Loader";
 import { DataGrid } from '@mui/x-data-grid';
-import { Typography } from '@mui/material';
 import { myOrders } from '../../actions/orderAction';
 
 

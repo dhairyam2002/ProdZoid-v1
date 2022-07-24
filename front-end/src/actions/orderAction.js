@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-import { CREATE_ORDER_FAIL, CREATE_ORDER_REQ, CREATE_ORDER_SUC, MY_ORDER_FAIL, MY_ORDER_REQ, MY_ORDER_SUC } from "../constants/orderConstant"
+import { CREATE_ORDER_FAIL, CREATE_ORDER_REQ, CREATE_ORDER_SUC, MY_ORDER_FAIL, MY_ORDER_REQ, MY_ORDER_SUC, SINGLE_ORDER_FAIL, SINGLE_ORDER_SUC } from "../constants/orderConstant"
 
 export const createOrder = function (details) {
     return async (dispatch) => {
@@ -48,6 +48,23 @@ export const myOrders = function(user) {
             dispatch({
                 type: MY_ORDER_FAIL,
                 payload: error.response.data.message
+            })
+        }
+    }
+}
+
+export const singleOrder = function(id) {
+    return async (dispatch) => {
+        try {
+            const {data} = await axios.get(`/order/${id}`);
+            dispatch({
+                type: SINGLE_ORDER_SUC,
+                payload: data.orderDetails
+            })
+        } catch (error) {
+            dispatch({
+                type: SINGLE_ORDER_FAIL,
+                error
             })
         }
     }
