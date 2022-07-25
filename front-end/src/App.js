@@ -28,6 +28,8 @@ import AllOrders from './components/Admin/AllOrders';
 import OrderDetailsAdmin from "./components/Admin/OrderDetailsAdmin";
 import UnprocessedOrders from "./components/Admin/UnprocessedOrders";
 import ClosedOrders from "./components/Admin/ClosedOrders";
+import PostOrders from "./components/Admin/PostOrders";
+import ProductActions from "./components/Admin/ProductActions";
 
 function App() {
   const dispatch = useDispatch();
@@ -65,6 +67,9 @@ function App() {
 
       <Route path = "/admin/products/all" element = {<><Header className = 'header-2 main-header'/><AllProducts /></>} />
 
+      <Route path = "/admin/products/:id" element = {<><Header className = 'header-2 main-header' /><ProductActions /></>} />
+      <Route path = "/admin/products/post" element = {<><Header  className = 'header-2 main-header'/><PostOrders /></>} />
+
       <Route path = "/admin/orders/all" element = {<><Header className = 'header-2 main-header'/><AllOrders /></>}/>
 
       <Route path = "/admin/orders/pending" element = {<><Header className = 'header-2 main-header'/><UnprocessedOrders /></>}/>
@@ -72,6 +77,8 @@ function App() {
       <Route path = "/admin/orders/details/:id" element = {<><Header className = 'header-2 main-header'/><OrderDetailsAdmin /></>} />
 
       <Route path = "/admin/orders/closed" element = {<><Header className = 'header-2 main-header'/> <ClosedOrders /> </>} />
+
+
       </Routes>
       <Footer />
       </div>

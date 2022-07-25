@@ -14,6 +14,7 @@ function AllProducts() {
 
     const all_products = useSelector(state => state.products);
     const navigate = useNavigate();
+    const [loader, setLoader] = React.useState(true);
     const dispatch = useDispatch();
     React.useEffect(() => {
         if (loading === false) {
@@ -26,7 +27,9 @@ function AllProducts() {
 
     console.log(all_products);
     const rows = [];
-
+    setTimeout(() => {
+        setLoader(false);
+    }, 300)
     all_products.products.map((item) => {
         const rowObj = {
             id: item._id,
@@ -62,14 +65,14 @@ function AllProducts() {
             headerName: "Actions",
             renderCell: (params) => {
                 return (
-                    <Link to={`/admin/products/${params.getValue(params.id, "id")}/#dashboardContainer`}>View</Link>
+                    <Link to={`/admin/products/${params.getValue(params.id, "id")}`}>View</Link>
                 )
             }
         }
     ];
     return (
         <Fragment>
-            <div className='d-sections'>
+            {loader ? <Loader /> : <div className='d-sections'>
                 <div className='sidebar'>
                     <Sidebar />
                 </div>
@@ -82,7 +85,7 @@ function AllProducts() {
                         className='order-table'
                         autoHeight />}
                 </div>
-            </div>
+            </div>}
 
         </Fragment>
     )

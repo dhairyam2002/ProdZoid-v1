@@ -1,0 +1,48 @@
+.post-order-component{
+    display: grid;
+    grid-template-columns: 0.6fr 2fr;
+    padding-left: 4vw;  
+}
+
+.po-section{
+    display: flex;
+    flex-direction: column;
+    width: 60vw;
+    margin-top: 2vw;
+    padding: 50px 0;
+    align-items: center;
+    background-color: whitesmoke;
+}
+.po-section > input, .po-section > textarea{
+    margin: 10px auto;
+    width: 30vw;
+    padding: 10px;
+    border-radius: 15px;
+    border: 1px solid gray;
+}
+
+.po-section > button{
+    width: 20vw;
+    margin-top: 30px;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    background-color: black;
+    color: white
+}
+
+@media screen and (max-width: 700px) {
+    .post-order-component{
+        grid-template-columns: 1fr;
+    }
+    .po-section{
+        width: 100%;
+    }
+    .po-section > input, .po-section > textarea{
+        width: 65vmin;
+    }
+    .po-section > button{
+        width: 40vw;
+        
+    }
+}

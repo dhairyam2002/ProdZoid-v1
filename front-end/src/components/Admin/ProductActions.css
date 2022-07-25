@@ -1,0 +1,74 @@
+.pa-image{
+    width: 20vmax;
+    height: 25vmax;
+    max-height: 30vmax;
+    margin-bottom: 5px;
+}
+.pa-section{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 15px;
+    padding-bottom: 0px;
+    background-color: rgb(251, 250, 250); 
+    width: 60%;
+    margin: auto;
+    transition: all 0.5s;
+    border: 1px solid lightgray;
+    margin-top: 3vmax;
+}
+.pa-section:hover{
+    box-shadow: 0 0 5px grey;
+    transform: scale(1.01);
+}
+.pa-desc{
+    width: 60%;
+    margin-left: 10px;
+    border-left: 0.3px solid lightgray;
+    padding: 10px;
+    padding-bottom: 0px;
+    justify-content: space-between;
+      
+}
+
+@media screen and (max-width: 912px) {
+    .pa-section{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .pa-desc{
+        width: 100%;
+        border: none;
+        border-top: 0.3px solid lightgray
+    }
+
+}
+.pa-desc > div{
+    max-height: 300px;
+    overflow: auto;
+}
+.pa-actions > button, .pa-btn{
+    margin: 15px;
+    padding: 7px;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+.pa-btn{
+    display: flex;
+    
+}
+.pa-details{
+    display: flex;
+    justify-content: space-between;
+    text-align: end;
+}
+.po-dialogue{
+    display: flex;
+    flex-direction: column;
+}
+.po-dialogue > input, .po-dialogue > textarea{
+    padding: 10px;
+}

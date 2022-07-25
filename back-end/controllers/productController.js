@@ -4,8 +4,29 @@ const ApiFeatures = require("../utils/apiFeatures");
 
 exports.createNewProduct = async (req, res, next) => {
     try {
-        req.body.createdBy = req.user.id
-        const product = await Product.create(req.body);
+
+        const {name, price, category, stock, link1, link2, link3, description} = req.body;
+        const obj = {
+            name, price, category, stock, description,
+            createdBy: req.user.id,
+            images: [
+                {
+                    public_id: "not used",
+                    url: link1
+                },
+                {
+                    public_id: "not used",
+                    url: link2
+                },
+                {
+                    public_id: "not used",
+                    url: link3
+                }
+            ]
+        }
+        console.log(obj);
+        const product = await Product.create(obj);
+        console.log(product);
         res.status(201).json({
             success: true
         })

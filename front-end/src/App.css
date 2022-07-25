@@ -48,10 +48,14 @@ input[type="number"]{
     width: 60vw;
     transition: all 0.5s;
     padding: 1.3vmin;
+    border: none;
+    border-bottom: 2px solid grey;
 }
 .search-input:focus{
     transform: scale(1.03);
     padding: 2vmin;
+    outline: none;
+    border-bottom: 2px solid black;
 }
 .search-button{
     margin-top: 7vmin;

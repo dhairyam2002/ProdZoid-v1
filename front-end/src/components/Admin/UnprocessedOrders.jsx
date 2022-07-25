@@ -15,6 +15,7 @@ function UnprocessedOrders() {
 
     const {allOrders} = useSelector(state => state.allOrders);
     const navigate = useNavigate();
+    const [loader, setLoader] = React.useState(true);
     const dispatch = useDispatch();
     React.useEffect(() => {
         if (loading === false) {
@@ -25,8 +26,13 @@ function UnprocessedOrders() {
         dispatch(getAllOrders("processing"));
     }, [isAuthenticated, loading, dispatch])
 
-    const rows = [];
+    setTimeout(() => {
+        setLoader(false);
+    }, 200)
 
+
+    const rows = [];
+    
     allOrders.map((item) => {
         const rowObj = {
             id: item._id,
@@ -69,7 +75,7 @@ function UnprocessedOrders() {
     ];
     return (
         <Fragment>
-            <div className='d-sections'>
+            {loader ? <Loader /> : <div className='d-sections'>
                 <div className='sidebar'>
                     <Sidebar />
                 </div>
@@ -82,7 +88,7 @@ function UnprocessedOrders() {
                         className='order-table'
                         autoHeight />
                 </div>
-            </div>
+            </div>}
 
         </Fragment>
     )

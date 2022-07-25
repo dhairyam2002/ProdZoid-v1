@@ -61,7 +61,7 @@
 
 .productCard:hover {
     box-shadow: 0 0 5px grey;
-    transform: translateY(-1vmax)
+    transform: scale(1.05);
 }   
 
 .productCard{

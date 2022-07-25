@@ -20,8 +20,8 @@ const OrderDetailsAdmin = () => {
 
     React.useEffect(() => {
         if (loading === false) {
-            if (isAuthenticated === false) {
-                navigate("/login");
+            if (user.role !== "admin") {
+                navigate("/");
             }
         }
 
@@ -30,7 +30,7 @@ const OrderDetailsAdmin = () => {
 
     setTimeout(() => {
         setLoader(false);
-    }, 1000)
+    }, 150)
 
     function handleGoBack(event) {
         window.history.go(-1);
