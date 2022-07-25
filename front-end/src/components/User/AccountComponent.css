@@ -1,7 +1,6 @@
 .account-component{
     width: 80%;
     margin: 10vmin auto;
-    background-color: rgb(209, 226, 244); 
 }
 .profile-badge{
     display: flex;
@@ -27,10 +26,13 @@
     display: flex;
     flex-direction: row;
 }
+.left-panel{
+    margin: 20px 0;
+}
 .panel-items{
     text-align: center;
     background-color: whitesmoke;
-    border-bottom: 1px solid lightgray ;
+    border-bottom: 1px solid lightgray;
     border-radius: 20px;
     margin: 10px 0;
     padding: 10px 0;
@@ -72,9 +74,12 @@
     }
 }
 .main-content{
+    padding: 10px;
     margin: 25px;
     width: 100%;
     /* border: 1px solid lightgray ; */
+    background-color: whitesmoke;
+    border-radius: 15px;
 }
 .profile-content > img{
     width: 20vmin;

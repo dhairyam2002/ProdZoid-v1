@@ -1,0 +1,36 @@
+.side-bar-links{
+    color: black;
+    text-decoration: none;
+}
+.sidebar-links{
+    color: black;
+    text-decoration: none;
+}
+.sidebar-links:link{
+    text-decoration: none;
+}
+.sidebar-wrapper{
+    padding: 20px;
+    margin: 10px;
+    background-color: whitesmoke;
+    border-radius: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.side-bar{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 730px){
+    .side-bar{
+        width: 100%;
+        margin: 20px 0;
+    }
+}

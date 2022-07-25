@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-import { CREATE_ORDER_FAIL, CREATE_ORDER_REQ, CREATE_ORDER_SUC, MY_ORDER_FAIL, MY_ORDER_REQ, MY_ORDER_SUC, SINGLE_ORDER_FAIL, SINGLE_ORDER_SUC } from "../constants/orderConstant"
+import { ALL_ORDERS_FAIL, ALL_ORDERS_SUC, CREATE_ORDER_FAIL, CREATE_ORDER_REQ, CREATE_ORDER_SUC, MY_ORDER_FAIL, MY_ORDER_REQ, MY_ORDER_SUC, SINGLE_ORDER_FAIL, SINGLE_ORDER_SUC } from "../constants/orderConstant"
 
 export const createOrder = function (details) {
     return async (dispatch) => {
@@ -65,6 +65,32 @@ export const singleOrder = function(id) {
             dispatch({
                 type: SINGLE_ORDER_FAIL,
                 error
+            })
+        }
+    }
+}
+
+export const getAllOrders = function(keyword = "") {
+    return async (dispatch) => {
+        try {
+            const {data} = await axios.get(`/orders/all?status=${keyword}`);
+            
+            if(data.success === true){
+                dispatch({
+                    type: ALL_ORDERS_SUC,
+                    payload: data.allOrders
+                })
+            }
+            else{
+                dispatch({
+                    type: ALL_ORDERS_FAIL,
+                    payload: data.message
+                })
+            }
+        } catch (error) {
+            dispatch({
+                type: ALL_ORDERS_SUC,
+                payload: error.response.data.message
             })
         }
     }

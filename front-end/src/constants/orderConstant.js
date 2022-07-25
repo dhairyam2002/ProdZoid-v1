@@ -10,4 +10,7 @@ export const MY_ORDER_FAIL = "MY_ORDER_FAIL";
 export const SINGLE_ORDER_SUC = "SINGLE_ORDER_SUC";
 export const SINGLE_ORDER_FAIL = "SINGLE_ORDER_FAIL";
 
+export const ALL_ORDERS_SUC = "ALL_ORDERS_SUC";
+export const ALL_ORDERS_FAIL = "ALL_ORDERS_FAIL";
+
 export const CLEAR_ERR = "CLEAR_ERR"

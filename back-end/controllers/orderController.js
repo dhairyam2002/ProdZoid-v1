@@ -51,6 +51,36 @@ exports.getOrdersByUser = async (req, res, next) => {
     }
 }
 
+
+exports .getAllOrders = async (req, res, next) => {
+    try {
+        let allOrders;
+        if(req.query.status === ""){
+            allOrders = await Order.find();
+        }
+        else{
+            allOrders = await Order.find({orderStatus: req.query.status});
+        }
+
+        if(!allOrders) {
+            res.status(400).json({
+                success: false,
+                message: "No Orders found!"
+            })
+        }
+        else{
+            res.status(200).json({
+                success: true,
+                allOrders
+            })
+        }
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error
+        })
+    }
+}
 exports.getSingleOrder = async(req, res, next) => {
     try {
         const orderDetails = await Order.findById(req.params.id);

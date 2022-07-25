@@ -22,8 +22,10 @@ import Shipping from "./components/Cart/Shipping";
 import Checkout from "./components/Cart/Checkout";
 import MyOrders from "./components/Orders/MyOrders";
 import OrderDetails from "./components/Orders/OrderDetails";
-
-
+import Dashboard from "./components/Admin/Dashboard";
+import AllProducts from "./components/Admin/AllProducts";
+import AllOrders from './components/Admin/AllOrders';
+import OrderDetailsAdmin from "./components/Admin/OrderDetailsAdmin";
 
 function App() {
   const dispatch = useDispatch();
@@ -56,6 +58,16 @@ function App() {
       <Route path = "/myOrders"  element = {<><Header className='header-2 main-header'/><MyOrders /></>}/>
 
       <Route path = "/myOrders/order/:id" element = {<><Header className='header-2 main-header'/><OrderDetails /></>}/>
+
+      <Route path = "/admin/dashboard" element = {<><Header className='header-2 main-header'/><Dashboard /></>} />
+
+      <Route path = "/admin/products/all" element = {<><Header className = 'header-2 main-header'/><AllProducts /></>} />
+
+      <Route path = "/admin/orders/all" element = {<><Header className = 'header-2 main-header'/><AllOrders /></>}/>
+
+      <Route path = "/admin/orders/processing" element = {<><Header className = 'header-2 main-header'/><AllOrders /></>}/>
+
+      <Route path = "/admin/orders/details/:id" element = {<><Header className = 'header-2 main-header'/><OrderDetailsAdmin /></>} />
       </Routes>
       <Footer />
       </div>

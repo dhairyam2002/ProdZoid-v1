@@ -63,7 +63,7 @@ function AccountComponent() {
                     {params.keyword === "updatePassword" ? <div className='responsive-main-content'><UpdatePassword /></div> : ""}
                     <p className='panel-items' id="resetPassword" onClick={toggleState}>Reset Password</p>
                     {params.keyword === "resetPassword" ? <div className='responsive-main-content'> <ForgotPassword /></div> : ""}
-                    <p className='panel-items' id='myOrders' onClick={()=> {navigate("/myOrders")}}>My Orders</p>
+                    <p className='panel-items' id='myOrders' onClick={()=> { user.role === "admin" ? navigate("/admin/dashboard"): navigate("/myOrders")}}>{user.role === "admin" ? "Dashboard" : "My Orders"}</p>
                     <p className='panel-items' id="logout" onClick={logout}>Logut</p>
                 </div>
                 <div className="main-content">

@@ -186,3 +186,11 @@
 .back-btn > button:hover{
     transform: scale(1.06);
 }
+.actions-btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.confirm-delivery-btn{
+    margin-right: 2vw;
+}
