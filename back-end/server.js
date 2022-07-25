@@ -5,19 +5,19 @@ const connectDatabase = require("./config/database");
 
 const cors = require('cors');
 const corsOptions ={
-    origin:'http://localhost:4000', 
+    origin:'http://localhost:3000', 
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 }
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization");
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "http://localhost:3000/");
+    res.header("Access-Control-Allow-Methods", 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
 
-});
+}) 
 process.on("uncaughtException", (err) => {
     console.log(err.message);
     process.exit(1)

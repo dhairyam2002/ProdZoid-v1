@@ -41,7 +41,9 @@ const OrderDetails = () => {
         <Fragment>
           <div className='orders-status'>
 
-            <h5 >Status: Processing, You will get a text message, once product is out for delivery on your city!</h5>
+            <h5 style = {{color: orderDetails.orderStatus === "processing" ? "red" : "green"}}>{orderDetails.orderStatus === "processing" ? (
+              "Status: Processing, You will get a text message, once product is out for delivery on your city!"
+            ): "Delivered!"}</h5>
             <p>Order Creation Date: {orderDetails.createAt.slice(0, 10)}</p>
           </div>
 

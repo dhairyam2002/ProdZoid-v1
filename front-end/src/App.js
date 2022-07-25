@@ -26,6 +26,8 @@ import Dashboard from "./components/Admin/Dashboard";
 import AllProducts from "./components/Admin/AllProducts";
 import AllOrders from './components/Admin/AllOrders';
 import OrderDetailsAdmin from "./components/Admin/OrderDetailsAdmin";
+import UnprocessedOrders from "./components/Admin/UnprocessedOrders";
+import ClosedOrders from "./components/Admin/ClosedOrders";
 
 function App() {
   const dispatch = useDispatch();
@@ -65,9 +67,11 @@ function App() {
 
       <Route path = "/admin/orders/all" element = {<><Header className = 'header-2 main-header'/><AllOrders /></>}/>
 
-      <Route path = "/admin/orders/processing" element = {<><Header className = 'header-2 main-header'/><AllOrders /></>}/>
+      <Route path = "/admin/orders/pending" element = {<><Header className = 'header-2 main-header'/><UnprocessedOrders /></>}/>
 
       <Route path = "/admin/orders/details/:id" element = {<><Header className = 'header-2 main-header'/><OrderDetailsAdmin /></>} />
+
+      <Route path = "/admin/orders/closed" element = {<><Header className = 'header-2 main-header'/> <ClosedOrders /> </>} />
       </Routes>
       <Footer />
       </div>
