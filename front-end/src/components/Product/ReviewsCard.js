@@ -4,7 +4,6 @@ import Loader from "../Layout/Loader/Loader";
 import { useDispatch, useSelector } from 'react-redux';
 
 const ReviewsCard = ({ reviews }) => {
-    console.log(reviews);
     const options = {
         edit: false,
         color: "rgba(20,20,20,0.1)",
@@ -13,7 +12,6 @@ const ReviewsCard = ({ reviews }) => {
         value: reviews.ratings,
         isHalf: true
     }
-    console.log("rendered");
     return (
 
 

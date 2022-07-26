@@ -182,7 +182,7 @@ export const forgotPassword = function (email) {
                 type: FP_REQ
             })
 
-            console.log(email);
+ 
             const { data } = await axios.post("/api/v1/password/forgot", {email: email});
 
             if (data.success === true) {
@@ -215,7 +215,6 @@ export const resetPassword = function(rp) {
             dispatch({
                 type: RP_REQ
             })
-            // console.log(rp);
             const password = {
                 password: rp.passwords.newPassword,
                 confirmPassword: rp.passwords.confirmPassword

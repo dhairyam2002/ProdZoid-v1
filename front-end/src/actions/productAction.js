@@ -8,12 +8,11 @@ export const getProduct = function(keyword = "", price=[0, 250000], rating=[0,5]
     return async (dispatch) => {
         try {
             dispatch({type: ALL_PRODUCT_REQ});
-            // console.log(keyword);
+
             let link = `/api/v1/products?keyword=${keyword}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${rating[0]}&ratings[lte]=${rating[1]}`;
-            console.log(link);
-            // console.log(response);
+
             const {data} = await axios.get(link);
-            // console.log(data);
+
             dispatch({
                 type: ALL_PRODUCT_SUC,
                 payload: data

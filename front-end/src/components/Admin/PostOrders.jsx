@@ -55,7 +55,6 @@ function PostOrders() {
             },
             body: JSON.stringify(postState)
         }).then((res) => res.json()).then((data) => {
-            console.log(data.success);
             if (data.success) {
                 toast.success("Product added!")
                 setTimeout(() => {

@@ -7,7 +7,6 @@ exports.newOrder = async (req, res, next) => {
 
     console.log(req.body)
     try {
-        console.log("fhnakfn");
         const { shippingDetails, orderItems, orderValue, totalPrice } = req.body
 
         const order = await Order.create({ shippingDetails, orderItems, orderValue, totalPrice, user: req.user._id });
@@ -16,7 +15,7 @@ exports.newOrder = async (req, res, next) => {
             success: true,
             message: "Order successfully placed"
         })
-        let message = `Order is placed successfully! You can check the details here: http://localhost:3000/myOrders/order/${order._id}`
+        let message = `Order is placed successfully! You can check the details here: ${req.protocol}://${req.get("host")}/myOrders/order/${order._id}`
 
         try {
             await sendEmail({
@@ -42,7 +41,6 @@ exports.getOrdersByUser = async (req, res, next) => {
 
         const orders = await Order.find({ user: id });
 
-        console.log(orders);
         if (!orders) {
             res.status(400).json({
                 success: false,
@@ -141,7 +139,7 @@ exports.updateOrder = async (req, res, next) => {
                             {
                                 stock: Number(product.stock - items[i].quantity)
                             })
-                        let message = `Order is delivered successfully! You can check the details here: http://localhost:3000/myOrders/order/${order._id}`
+                        let message = `Order is delivered successfully! You can check the details here: ${req.protocol}://${req.get("host")}/myOrders/order/${order._id}`
 
                         try {
                             await sendEmail({
@@ -152,7 +150,6 @@ exports.updateOrder = async (req, res, next) => {
                         } catch (error) {
                             console.log(error);
                         }
-                        console.log(updatedProduct);
                     }
                 }
             } catch (error) {

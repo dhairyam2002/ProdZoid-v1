@@ -4,7 +4,6 @@ import { ADD_TO_CART, REMOVE_FROM_CART, SHIPPING_INFO } from "../constants/cartC
 export const cartReducer = (state = { cartItems: [], shippingInfo : {}}, action) => {
     switch (action.type) {
         case ADD_TO_CART:
-            console.log("reducer called");
             const item = action.payload;
 
             const itemPresent = state.cartItems.find((it) => it.pid === item.pid)

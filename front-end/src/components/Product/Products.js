@@ -33,12 +33,11 @@ const Products = () => {
   //   dispatch(getProduct(keyword, price))
   // }, [dispatch, keyword, price]);
   const currentRoute = useLocation();
-  console.log(currentRoute);
+
 
   React.useEffect(()=>{
     dispatch(getProduct(keyword));
     if (currentRoute.pathname == "/products") {
-      console.log('true');
       document.querySelector(`#${"product-page"}`).scrollIntoView();
     }
   }, [dispatch])
@@ -46,7 +45,6 @@ const Products = () => {
 
   function handleFiltering(event) {
     navigate(`/products/${keyword ? keyword : ""}`);
-    console.log(keyword + " " + price + " " + rating);
     dispatch(getProduct(keyword, price, rating));
   }
 

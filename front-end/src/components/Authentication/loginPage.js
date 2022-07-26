@@ -57,9 +57,11 @@ export default function SignIn() {
     }
 
     React.useEffect(() => {
-        if (isAuthenticated === true) {
-            navigate("/account");
-        }
+        if(loading === false){
+            if (isAuthenticated === true) {
+                navigate("/account");
+            }
+        }     
         if(error){
             toast.warn(error);
         }

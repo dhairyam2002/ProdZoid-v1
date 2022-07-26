@@ -25,7 +25,6 @@ function AllProducts() {
         dispatch(getProduct());
     }, [isAuthenticated, loading, dispatch])
 
-    console.log(all_products);
     const rows = [];
     setTimeout(() => {
         setLoader(false);

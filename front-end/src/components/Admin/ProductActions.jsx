@@ -47,7 +47,6 @@ function ProductActions() {
 
     function handleSubmit(event) {
         event.preventDefault();
-        console.log(stock);
         fetch(`/api/v1/admin/product/${productDetail._id}`, {
             method: 'PUT',
             headers: {

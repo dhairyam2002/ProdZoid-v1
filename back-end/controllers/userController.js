@@ -115,7 +115,7 @@ exports.forgotPassword = async (req, res, next) => {
 
         await user.save({ validateBeforeSave: false });
 
-        const resetPasswordUrl = `${req.protocol}://localhost:3000/password/reset/${resetToken}`;
+        const resetPasswordUrl = `${req.protocol}://${req.get("host")}/password/reset/${resetToken}`;
 
         const message = `Your password reset token is :- \n ${resetPasswordUrl}`
         try {
@@ -145,11 +145,9 @@ exports.forgotPassword = async (req, res, next) => {
 
 
 exports.resetPassword = async function (req, res, next) {
-    console.log(req.body.password);
     const resetPasswordToken = crypto.createHash("sha256").update(req.params.token).digest("hex");
 
 
-    console.log(resetPasswordToken);
     const user = await User.findOne({
         resetPasswordToken,
         resetPasswordExpire: { $gt: Date.now() }
@@ -210,7 +208,6 @@ exports.updatePassword = async (req, res, next) => {
 
     try {
         const user = await User.findById(req.user.id).select('+password');
-        console.log(req.body);
         const passwordMatched = await user.comparePassword(req.body.oldPassword);
 
 

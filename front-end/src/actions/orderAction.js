@@ -73,7 +73,6 @@ export const singleOrder = function(id) {
 export const getAllOrders = function(keyword = "") {
     return async (dispatch) => {
         try {
-            console.log(keyword);
             const {data} = await axios.get(`/orders/all?status=${keyword}`);
 
             if(data.success === true){

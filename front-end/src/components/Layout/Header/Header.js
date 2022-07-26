@@ -18,6 +18,7 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import { color } from '@mui/system';
 import { Link } from 'react-router-dom';
 import Header from './Header.css';
+import {useSelector} from 'react-redux';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -145,7 +146,7 @@ export default function PrimarySearchAppBar() {
       </MenuItem>
     </Menu>
   );
-
+  const {user, isAuthenticated} = useSelector(state => state.user);
   return (
     <Box sx={{ flexGrow: 1 }} className='header-comp'>
       <AppBar position="static" style={{ backgroundColor: "black", color: "white" }}>
@@ -171,7 +172,7 @@ export default function PrimarySearchAppBar() {
               aria-haspopup="true"
               color="inherit"
             >
-              <Link to="/account" className='link'>
+              <Link to={isAuthenticated ? "/account" : "/login"}className='link'>
                 <Badge>
                   <span class="material-symbols-outlined">
                     account_circle

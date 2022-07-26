@@ -17,7 +17,6 @@ const ProductDetails = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
     const currentRoute = useLocation();
-    console.log(id);
     React.useState(() => {
         dispatch(getProductDetail(id));
         const element = document.querySelector(`#${"product-details"}`)
@@ -39,8 +38,6 @@ const ProductDetails = () => {
     }
 
     const obj = useSelector(state => state.cart);
-    console.log(obj);
-    // console.log(productDetail);
 
     const [quantity, setQuantity] = React.useState(1);
 

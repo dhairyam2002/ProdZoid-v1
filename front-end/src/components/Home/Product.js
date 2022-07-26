@@ -11,9 +11,7 @@ const Product = ({ product }) => {
         value: product.ratings || product.rating,
         isHalf: true
     } 
-    // console.log(product);
     const {id} = useParams();
-    console.log();
     return (
 
         <Link className="productCard" to={`/product/${product._id}`}>

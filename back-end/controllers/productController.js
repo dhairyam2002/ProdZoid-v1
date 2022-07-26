@@ -23,9 +23,7 @@ exports.createNewProduct = async (req, res, next) => {
                 }
             ]
         }
-        console.log(obj);
         const product = await Product.create(obj);
-        console.log(product);
         res.status(201).json({
             success: true
         })
@@ -40,7 +38,6 @@ exports.createNewProduct = async (req, res, next) => {
 
 exports.getAllProducts = async (req, res) => {
     try {
-        // console.log(req.query);
         const apiFeatures = new ApiFeatures(Product.find(), req.query).search().filter();
         const products = await apiFeatures.query;
         res.status(200).json({
@@ -137,7 +134,6 @@ exports.createProductReview = async (req, res, next) => {
         const product = await Product.findById(productId);
 
         const allReviews = await Product.findById(productId).select("reviews");
-        // console.log(allReviews);
 
         let isReviewed = false;
         let reviewObject = undefined;
@@ -150,7 +146,6 @@ exports.createProductReview = async (req, res, next) => {
             }
         }
         if (isReviewed) {
-            // console.log(isReviewed);
             product.reviews.forEach((rev) => {
                 if (rev.user.toString() === req.user._id.toString()) {
                     rev.rating = rating,
@@ -201,7 +196,6 @@ exports.getAllReviews = async (req, res, next) => {
 exports.deleteReview = async (req, res, next) => {
     try {
         const product = await Product.findById(req.body.productId);
-        // console.log(product.reviews);
         let review = undefined;
         product.reviews.forEach((rev) => {
             if (rev.user.toString() === req.user._id.toString()) {

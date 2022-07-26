@@ -78,6 +78,7 @@ function App() {
 
       <Route path = "/admin/orders/closed" element = {<><Header className = 'header-2 main-header'/> <ClosedOrders /> </>} />
 
+      {/* <Route element = {<>Page not found!</>} /> */}
 
       </Routes>
       <Footer />
