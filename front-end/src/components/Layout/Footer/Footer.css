@@ -39,11 +39,20 @@
 .logof{
     color: #76ffff;
     margin-bottom: 5vmin;
-    font-size: large;
+    font-size: xx-large;
 }
 .linkf:hover{
     color: #76ffff;
 }
 .logof:hover {
     color: white
+}
+.right-s > div > a{
+    display: flex;
+    align-items: center;
+    align-self: center;
+}
+
+.icon{
+    margin-right: 5px;
 }
