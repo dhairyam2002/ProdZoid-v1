@@ -27,23 +27,27 @@ const UpdatePassword = () => {
 
   function handleSubmit(event) {
     event.preventDefault();
-
     if (passwords.newPassword !== passwords.confirmPassword) {
       toast.error("Passwords don't match!! Please try again!")
     }
 
     else {
-      dispatch(updatePassword(passwords));
+      fetch(`/api/v1/password/update`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(passwords)
+      }).then((res)=> res.json()).then((data)=>{
+        if(data.success === true){
+          toast.success("Password updated succesfully!");
+        }
+        else{
+          toast.error("Old password incorrect!");
+        }
+      }).catch((error)=> console.log(error));
     }
   }
-  React.useEffect(()=>{
-    if(error){
-      toast.warn(error);
-    }
-    if(isUpdated){
-      toast.success(isUpdated);
-    }
-  }, [isUpdated, error])
   return (
     <div className='updatePanel'>
       <ToastContainer 

@@ -1,6 +1,7 @@
 const Order = require("../models/orderModel");
 const Product = require("../models/productModel");
-
+const sendEmail = require("../utils/sendEmail");
+const User = require("../models/userModel");
 //only by logged in users
 exports.newOrder = async (req, res, next) => {
 
@@ -15,6 +16,17 @@ exports.newOrder = async (req, res, next) => {
             success: true,
             message: "Order successfully placed"
         })
+        let message = `Order is placed successfully! You can check the details here: http://localhost:3000/myOrders/order/${order._id}`
+
+        try {
+            await sendEmail({
+                email: req.user.email,
+                subject: `Order Placed Successfully!`,
+                message,
+            });
+        } catch (error) {
+            console.log(error);
+        }
     } catch (error) {
         res.status(500).json({
             success: false,
@@ -110,7 +122,7 @@ exports.updateOrder = async (req, res, next) => {
         const id = req.params.id;
 
         const orderDetails = await Order.findById(id);
-        if (orderDetails.orderStatus === "Delivered") {
+        if (orderDetails.orderStatus === "delivered") {
             res.status(400).json({
                 success: false,
                 message: "Product is already delivered!"
@@ -119,16 +131,27 @@ exports.updateOrder = async (req, res, next) => {
         else {
             const order = await Order.findByIdAndUpdate(id, { orderStatus: "delivered" });
 
+            const user = await User.findById(orderDetails.user);
             const items = orderDetails.orderItems;
             try {
                 for (let i = 0; i < items.length; i++) {
                     const product = await Product.findById(items[i].product);
-                    
                     if (product) {
-                        const updatedProduct = await Product.findByIdAndUpdate(items[i].product, 
-                            { 
-                            stock: Number(product.stock - items[i].quantity) 
-                        })
+                        const updatedProduct = await Product.findByIdAndUpdate(items[i].product,
+                            {
+                                stock: Number(product.stock - items[i].quantity)
+                            })
+                        let message = `Order is delivered successfully! You can check the details here: http://localhost:3000/myOrders/order/${order._id}`
+
+                        try {
+                            await sendEmail({
+                                email: user.email,
+                                subject: `Order Delivered Successfully!`,
+                                message,
+                            });
+                        } catch (error) {
+                            console.log(error);
+                        }
                         console.log(updatedProduct);
                     }
                 }

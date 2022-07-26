@@ -107,7 +107,7 @@ exports.forgotPassword = async (req, res, next) => {
         const user = await User.findOne({ email: req.body.email });
 
         if (!user) {
-            return res.json({ message: "User not found" })
+            return res.json({ success: false, message: "User not found" })
         }
 
         // Get ResetPassword Token
@@ -163,7 +163,7 @@ exports.resetPassword = async function (req, res, next) {
     }
     if (req.body.password !== req.body.confirmPassword) {
         return res.json({
-            message: "Passwords don't match"
+            message: "Passwords don't match!!"
         })
     }
     user.password = req.body.password;
@@ -210,9 +210,11 @@ exports.updatePassword = async (req, res, next) => {
 
     try {
         const user = await User.findById(req.user.id).select('+password');
+        console.log(req.body);
         const passwordMatched = await user.comparePassword(req.body.oldPassword);
 
 
+  
         if (!passwordMatched) {
             return res.json({
                 success: false

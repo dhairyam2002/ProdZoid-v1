@@ -24,7 +24,22 @@ const ForgotPassword = () => {
     function handleSubmit (event){
         if(isAuthenticated){
             if(email === user.email){
-                dispatch(forgotPassword(email));
+                fetch(`/api/v1/password/forgot`, {
+                    method: 'POST',
+                    headers:{
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({email: email})
+                }).then((res)=> res.json()).then((data) => {
+                    if(data.success === true){
+                        toast.success("Verification Link sent to the specified email!");
+                    }
+                    else{
+                        toast.error(data.message);
+                    }
+                }).catch((error)=>{
+                    alert(error);
+                })
                 // toast.success("Password reset link sent to your email address")
             }
             else{
@@ -32,20 +47,26 @@ const ForgotPassword = () => {
             }
         }
         else{
-            dispatch(forgotPassword(email));
+            fetch(`/api/v1/password/forgot`, {
+                method: 'POST',
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({email: email})
+            }).then((res)=> res.json()).then((data) => {
+                if(data.success === true){
+                    toast.success("Verification Link sent to the specified email!");
+                }
+                else{
+                    toast.error(data.message);
+                }
+            }).catch((error)=>{
+                alert(error);
+            })
             // toast.success("Password reset link sent to your email address")
         }
         
     }
-    React.useEffect(()=>{
-        if(error){
-            toast.warn(error)
-        }
-        if(message){
-            toast.success(message)
-        }
-    }, [error, message, toast])
-
 
   return (
     <div className='updatePanel'>

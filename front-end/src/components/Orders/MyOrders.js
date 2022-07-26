@@ -4,7 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import Loader from "../Layout/Loader/Loader";
 import { DataGrid } from '@mui/x-data-grid';
 import { myOrders } from '../../actions/orderAction';
-
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import "../Cart/Cart.css";
 
 const MyOrders = () => {
 
@@ -30,7 +31,7 @@ const MyOrders = () => {
 
     const rows = [];
 
-    orders.map((item)=>{
+    orders.map((item) => {
         const rowObj = {
             id: item._id,
             status: item.orderStatus,
@@ -70,11 +71,24 @@ const MyOrders = () => {
             }
         }
     ];
+
+    function handleGoBack(){
+        window.history.go(-1);
+    }
     return (
         <Fragment>
             {loader ? <Loader /> : (
+
                 <div className='myOrder-component'>
-                    <h3>{user.name}'s orders: </h3>
+                    <h3>My Orders</h3>
+                    <div className='back-btn od-btn mo-btn'>
+                        <button onClick={handleGoBack}>
+                            <div>
+                                <ArrowBackIcon />Back
+                            </div>
+                        </button>
+                    </div>
+                    
                     <DataGrid
                         rows={rows}
                         columns={columns}
@@ -82,7 +96,7 @@ const MyOrders = () => {
                         disableSelectionOnClick
                         className='order-table'
                         autoHeight />
-                    
+
                 </div>
             )}
         </Fragment>

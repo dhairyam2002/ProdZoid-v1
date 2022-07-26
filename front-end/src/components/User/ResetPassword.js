@@ -5,36 +5,51 @@ import { resetPassword } from '../../actions/userAction'
 import { useDispatch } from 'react-redux'
 const ResetPassword = () => {
 
-  const[passwords, setPasswords] = React.useState({
+  const [passwords, setPasswords] = React.useState({
     newPassword: "",
     confirmPassword: ""
   })
 
-  function handleChange(event){
+  function handleChange(event) {
     setPasswords(prevState => {
       return {
         ...prevState,
-        [event.target.name] : event.target.value
+        [event.target.name]: event.target.value
       }
     })
   }
   const params = useParams();
   const dispatch = useDispatch();
-  
-  function handleSubmit(event){
-    if(passwords.newPassword !== passwords.confirmPassword){
+
+  function handleSubmit(event) {
+    if (passwords.newPassword !== passwords.confirmPassword) {
       toast.warn("Passwords dont't match!");
     }
-    else{
-      dispatch(resetPassword({
-        passwords,
-        token: params.token
-      }))
+    else {
+      fetch(`/api/v1/password/reset/${params.token}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({password: passwords.newPassword, confirmPassword: passwords.confirmPassword})
+      }).then((res) => res.json()).then((data) => {
+        if (data.success === true) {
+          toast.success("Password Successfully Updated!");
+          setTimeout(() => {
+            window.location.replace("/account");
+          }, 800);
+        }
+        else {
+          toast.error(data.message);
+        }
+      }).catch((error) => {
+        alert(error);
+      })
     }
   }
   return (
     <div className='updatePanel'>
-      <ToastContainer 
+      <ToastContainer
         position="top-center"
         autoClose={5001}
         hideProgressBar={true}

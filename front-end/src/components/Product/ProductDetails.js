@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import Carousel from "react-material-ui-carousel"
 import { useSelector, useDispatch } from 'react-redux';
 import { getProductDetail } from '../../actions/detailAction';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import ReviewsCard from './ReviewsCard';
 import Loader from '../Layout/Loader/Loader';
 import { addToCart } from '../../actions/cartAction';
@@ -16,9 +16,14 @@ import { gridSelectionStateSelector } from '@mui/x-data-grid';
 const ProductDetails = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
+    const currentRoute = useLocation();
     console.log(id);
     React.useState(() => {
         dispatch(getProductDetail(id));
+        const element = document.querySelector(`#${"product-details"}`)
+        if(element){
+            element.scrollIntoView();
+        }
     }, [dispatch, id]);
 
     const { productDetail, loading, error } = useSelector(function (state) {
@@ -115,7 +120,7 @@ const ProductDetails = () => {
                         type="error"
                         pauseOnHover
                     />
-                    <div className='product-details'>
+                    <div className='product-details' id="product-details">
                         <div className='first-div-child'>
                             <Carousel className='product-image'>
                                 {productDetail.images && productDetail.images.map((imgItem) => {

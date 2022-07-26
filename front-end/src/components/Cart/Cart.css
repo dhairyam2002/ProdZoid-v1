@@ -207,3 +207,11 @@
 .order-info-shipping-details{
     border-top: 1px solid gray;
 }
+
+.mo-btn {
+    justify-content: space-between;
+    padding: 20px;
+}
+.myOrder-component{
+    text-align: center;
+}
