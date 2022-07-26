@@ -71,7 +71,7 @@ const OrderDetailsAdmin = () => {
                     <div className='orders-status'>
 
                         <h5 style = {{color: orderDetails.orderStatus === "processing" ? "red" : "green"}}>Status: {orderDetails.orderStatus === "processing" ? "Processing" : "Delivered"}</h5>
-                        <p>Order Creation Date: {orderDetails.createAt.slice(0, 10)}</p>
+                        <p>Order Creation Date: {orderDetails.createdAt}</p>
                     </div>
 
                     <div className='actions-btn back-btn'>
