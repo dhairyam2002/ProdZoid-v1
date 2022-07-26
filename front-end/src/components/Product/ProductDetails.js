@@ -8,8 +8,11 @@ import Loader from '../Layout/Loader/Loader';
 import { addToCart } from '../../actions/cartAction';
 import { toast, ToastContainer } from 'react-toastify'
 
+
+
 import "./ProductDetails.css"
 import ReactStars from 'react-rating-stars-component';
+import { gridSelectionStateSelector } from '@mui/x-data-grid';
 const ProductDetails = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
@@ -52,15 +55,49 @@ const ProductDetails = () => {
             }
         })
     }
-
     function cartHandler(event) {
-        if(productDetail.stock < 1){
+        if (productDetail.stock < 1) {
             toast.error("Out of stock!");
             return;
         }
         dispatch(addToCart(id, quantity));
         toast.success("Item added to cart!");
     }
+
+
+    //Dialogue
+
+    const [open, setOpen] = React.useState(false);
+    const [description, setDescription] = React.useState("");
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+    function handleSubmit(event) {
+        event.preventDefault();
+        const reviewObject = {
+            productId: productDetail._id,
+            rating: value,
+            comment: description
+        }
+        fetch(`/api/v1/product/review`, {
+            method:'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(reviewObject),
+        }).then((res)=> res.json()).then((data)=> {
+            console.log(data);
+        }).catch((error)=> console.log(error));
+    }
+    function handleChange(event) {
+        setDescription(event.target.value)
+    }
+
+    const [value, setValue] = React.useState(1);
     return (
         <Fragment >
             {loading ? <Loader /> : (
@@ -115,10 +152,6 @@ const ProductDetails = () => {
                                 <p>Description: </p>
                                 <p>{productDetail.description}</p>
                             </div>
-                            <div className='details-5'>
-                                <button className='customized-btn'>Submit Review</button>
-                            </div>
-
                         </div>
 
                     </div>

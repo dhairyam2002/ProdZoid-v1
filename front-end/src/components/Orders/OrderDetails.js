@@ -9,6 +9,14 @@ import "../Cart/Cart.css";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Rating from '@mui/material/Rating';
+import Typography from '@mui/material/Typography';
+
 const OrderDetails = () => {
   const { loading, isAuthenticated, user } = useSelector(state => state.user);
   const navigate = useNavigate();
@@ -32,22 +40,24 @@ const OrderDetails = () => {
     setLoader(false);
   }, 1000)
 
-  function handleGoBack(event){
+  function handleGoBack(event) {
     window.history.go(-1);
   }
+
   return (
     <Fragment >
       {loader ? <Loader /> : (
         <Fragment>
+          
           <div className='orders-status'>
 
-            <h5 style = {{color: orderDetails.orderStatus === "processing" ? "red" : "green"}}>{orderDetails.orderStatus === "processing" ? (
+            <h5 style={{ color: orderDetails.orderStatus === "processing" ? "red" : "green" }}>{orderDetails.orderStatus === "processing" ? (
               "Status: Processing, You will get a text message, once product is out for delivery on your city!"
-            ): "Delivered!"}</h5>
+            ) : "Delivered!"}</h5>
             <p>Order Creation Date: {orderDetails.createAt.slice(0, 10)}</p>
           </div>
 
-          <div className='back-btn'>
+          <div className='back-btn od-btn'>
             <button onClick={handleGoBack}>
               <div>
                 <ArrowBackIcon />Back
@@ -63,7 +73,7 @@ const OrderDetails = () => {
 
             {orderDetails.orderItems && orderDetails.orderItems.map((item) => (
               <div className='card-container'>
-                <OrderCard item={item} />
+                <OrderCard item={item} status = {orderDetails.orderStatus} user = {user} />
                 <div className='card-q'>
                   <input type="number" value={item.quantity} readOnly />
                 </div>

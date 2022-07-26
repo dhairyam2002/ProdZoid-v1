@@ -1,7 +1,6 @@
 const Product = require("../models/productModel");
 const ApiFeatures = require("../utils/apiFeatures");
 
-
 exports.createNewProduct = async (req, res, next) => {
     try {
 
@@ -134,7 +133,6 @@ exports.createProductReview = async (req, res, next) => {
             rating: Number(rating),
             comment
         }
-
 
         const product = await Product.findById(productId);
 

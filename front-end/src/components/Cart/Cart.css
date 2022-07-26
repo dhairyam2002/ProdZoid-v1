@@ -194,3 +194,16 @@
 .confirm-delivery-btn{
     margin-right: 2vw;
 }
+
+.od-btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.od-btn > button:last-child {
+    margin-right: 3vw;
+}
+
+.order-info-shipping-details{
+    border-top: 1px solid gray;
+}
