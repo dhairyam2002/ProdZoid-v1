@@ -55,6 +55,7 @@ export const orderDetailsReducer = (state = { orderDetails: {} }, action) => {
     switch (action.type) {
         case SINGLE_ORDER_SUC:
             return {
+                loading: true,
                 orderDetails: action.payload
             }
         case SINGLE_ORDER_FAIL:

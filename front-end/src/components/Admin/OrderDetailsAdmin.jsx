@@ -30,7 +30,7 @@ const OrderDetailsAdmin = () => {
 
     setTimeout(() => {
         setLoader(false);
-    }, 150)
+    }, 300)
 
     function handleGoBack(event) {
         window.history.go(-1);
@@ -71,7 +71,7 @@ const OrderDetailsAdmin = () => {
                     <div className='orders-status'>
 
                         <h5 style = {{color: orderDetails.orderStatus === "processing" ? "red" : "green"}}>Status: {orderDetails.orderStatus === "processing" ? "Processing" : "Delivered"}</h5>
-                        <p>Order Creation Date: {orderDetails.createdAt}</p>
+                        <p>Order Creation Date: {orderDetails.createAt.slice(0,10)}</p>
                     </div>
 
                     <div className='actions-btn back-btn'>
@@ -107,7 +107,7 @@ const OrderDetailsAdmin = () => {
 
 
 
-                        <div className='gross-total gross-order-info'>
+                        {orderDetails && <div className='gross-total gross-order-info'>
                             <div></div>
                             <div className='order-info-shipping-details'>
                                 <p>Shipping Details: </p>
@@ -129,7 +129,7 @@ const OrderDetailsAdmin = () => {
                                 </div>
                             </div>
                             <div></div>
-                        </div>
+                        </div>}
                     </div>
                 </Fragment>
             )}

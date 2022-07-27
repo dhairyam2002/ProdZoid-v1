@@ -44,7 +44,7 @@ const ConfirmOrder = () => {
       toast.success("Order Placed Successfully");
       setTimeout(() => {
         cartItems.map((item) => dispatch(removeFromCart(item.pid)));
-        window.location.replace("http://localhost:3000/myOrders");
+        window.location.replace("/myOrders");
         navigate("/account/me/myOrders");
       }, 1000);
 
