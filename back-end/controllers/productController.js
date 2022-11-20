@@ -1,5 +1,5 @@
 const Product = require("../models/productModel");
-const ApiFeatures = require("../utils/apiFeatures");
+const ApiFeatures = require("../utils/apiFeatures"); // dont
 
 exports.createNewProduct = async (req, res, next) => {
     try {
