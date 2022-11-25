@@ -225,19 +225,9 @@ exports.deleteReview = async (req, res, next) => {
 
 exports.getProductByCategories = async (req, res, next) => {
     try {
-        let adder = new Set();
-        let products = [];
-        let arr = req.body.category
-        for(let i = 0; i<arr.length; i++){
-            const result = await Product.find({category: arr[i]});
-            result.map((item) => {
-                if(adder.has(item._id.toString()) == false){
-                    adder.add(item._id.toString())
-                    products.push(item)
-                }
-            })
-        }
-        if(products[0] == products[2]) console.log('true');
+        const obj = req.query;
+        console.log(obj)
+        const products = await Product.find(obj);
         res.status(200).json({
             success: true,
             products

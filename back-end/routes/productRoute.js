@@ -19,6 +19,6 @@ router.route("/product/:id").get(getProductDetails);
 
 router.route("/product/review").put(isAuthenticatedUser,createProductReview).delete(isAuthenticatedUser, deleteReview).post(getAllReviews);
 
-router.route('/product/categories/search').post(getProductByCategories);
+router.route('/categories').get(getProductByCategories);
 
 module.exports = router;

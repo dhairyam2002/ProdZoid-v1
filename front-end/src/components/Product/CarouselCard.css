@@ -1,0 +1,12 @@
+.rec-products{
+    width: 200px;
+    height: 200px;
+    margin: auto
+}
+.rec-heading{
+    text-align: center;
+    margin-top: 50px;
+}
+.rec-heading:hover{
+    cursor: pointer;
+}

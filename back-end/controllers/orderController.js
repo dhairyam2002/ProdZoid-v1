@@ -169,3 +169,19 @@ exports.updateOrder = async (req, res, next) => {
         })
     }
 }
+
+
+// exports.deleteAllOrders = async (req, res, next) => {
+//     try {
+//         const order = await Order.deleteMany({});
+//         res.status(200).json({
+//             success: true,
+//             message: 'deleted'
+//         })
+//     } catch (error) {
+//         res.json({
+//             success: false,
+//             error: error.message
+//         })
+//     }
+// }

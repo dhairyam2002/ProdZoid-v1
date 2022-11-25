@@ -13,6 +13,7 @@ import { toast, ToastContainer } from 'react-toastify'
 import "./ProductDetails.css"
 import ReactStars from 'react-rating-stars-component';
 import { gridSelectionStateSelector } from '@mui/x-data-grid';
+import Recommendations from './Recommendations';
 const ProductDetails = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
@@ -156,6 +157,11 @@ const ProductDetails = () => {
                             </div>
                         </div>
 
+                    </div>
+
+                    <div className='recommendations'>
+                        {productDetail.category.map((item) =>  <Recommendations category={item}/>)}
+                       
                     </div>
                     <h3 className='reviews-heading'>Reviews</h3>
                     {productDetail.reviews && productDetail.reviews[0] ? (

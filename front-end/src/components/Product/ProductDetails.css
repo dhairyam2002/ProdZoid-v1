@@ -224,3 +224,8 @@
         width: 33vmax;
     }
 }
+
+.reviews-heading{
+    border-top: 1px dotted grey;
+    padding-top: 10px;
+}
