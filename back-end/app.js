@@ -23,8 +23,8 @@ app.use("/", order);
 
 app.use(express.static(path.join(__dirname, '../front-end/build')));
 
-// app.get("*", function (req, res, next){
-//     res.sendFile(path.resolve(__dirname, '../front-end/build/index.html'));
-// })
+app.get("*", function (req, res, next){
+    res.sendFile(path.resolve(__dirname, '../front-end/build/index.html'));
+})
 
 module.exports = app;
